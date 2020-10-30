@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const {port} = require("./config/index.js");
 
 const app = express();
 
@@ -36,5 +37,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+app.listen(port, () => console.log(`Listening on ${port}`) )
 module.exports = app;
