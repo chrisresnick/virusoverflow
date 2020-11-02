@@ -9,7 +9,7 @@ const usersRouter = require('./routes/users');
 const {sequelize} = require('./db/models');
 const {port} = require("./config/index.js");
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-//const restoreUser = require("")
+const {User} = require("./db/models/index")
 
 const app = express();
 const store = new SequelizeStore({
@@ -24,7 +24,6 @@ app.use(
   })
 );
 store.sync();
-//app.use(restoreUser);
 
 // view engine setup
 app.set('view engine', 'pug');
@@ -34,6 +33,29 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(async (req, res, next) => {
+  console.log(req.session);
+
+  if (req.session.auth) {
+    const { userId } = req.session.auth;
+
+    try {
+      const user = await User.findByPk(userId);
+
+      if (user) {
+        res.locals.authenticated = true;
+        res.locals.user = user;
+        next();
+      }
+    } catch (err) {
+      res.locals.authenticated = false;
+      next(err);
+    }
+  } else {
+    res.locals.authenticated = false;
+    next();
+  }
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

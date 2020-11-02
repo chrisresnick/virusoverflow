@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body
+        form(action="/users/", method="post")
+            div
+                label(for="email") Email
+                input#email(type="email", name="email")
+            div
+                label(for="username") Username
+                input#username(name="username", type="text")
+            div
+                label(for="password") Password
+                input#password(name="password", type="password")
+            div
+                label(for="password_conf") Confirm Password
+                input#password_conf(name="password_conf", type="password")
+            input(type="submit")
