@@ -1,0 +1,31 @@
+extends layout.pug
+
+block content
+
+    div
+        h1 Questions
+        input(name='search' type='text' placeholder='Search....')
+
+        ul
+        p Asked 10mins ago by Saad
+            ul
+                h2 Question:
+                p Do masks really help prevent the spread of Covid?
+                    h4 Total answers
+                    h5
+                    a(href='#') 0
+                    a(onclick="document.getElementById('id01').style.display='block'" href='#') Post Answer
+                    form(action='/action_page.php')
+                        label(style='float:left' for='psw')
+                            h2 Your Answer
+                        textarea(name='subject' placeholder='Type your answer here...' style='height:200px')
+                        a(href='#' type='submit') Submit
+                    h4 Total votes
+                    h5
+                    a(href='#') 10
+                    a(href='#') add vote
+                    h4 Total views
+                    h5
+                    a(href='#') 18
+                    a(href='') view details
+                    a(href='#') Delete Question
