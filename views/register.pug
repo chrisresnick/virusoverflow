@@ -3,7 +3,8 @@ extends layout.pug
 block content
         if(errors)
             each error in errors
-                h2.error=error
+                .error
+                    p=error
         form(action="/users/", method="post")
             div
                 label(for="email") Email

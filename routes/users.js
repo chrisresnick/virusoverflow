@@ -22,7 +22,9 @@ const registerValid = [
     .withMessage("Please provide a valid email."),
   check("password")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a password."),
+    .withMessage("Please provide a password.")
+    .isLength(10, 100)
+    .withMessage("Password must be at least 10 characters long"),
   check("username")
   .exists({ checkFalsy: true })
   .withMessage("Please provide a Username")
