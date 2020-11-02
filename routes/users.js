@@ -17,6 +17,7 @@ router.get("/register", (req, res) =>{
 const registerValid = [
   check("email")
     .exists({ checkFalsy: true })
+    .withMessage("Please provide an email")
     .isEmail()
     .withMessage("Please provide a valid email."),
   check("password")
@@ -33,13 +34,20 @@ router.post("/", registerValid, asyncHandler(async (req, res) => {
   const errors = validationErrors.errors.map(error => error.msg)
   if(password != password_conf) errors.push("Password and confirmation must match");
   if(errors.length === 0) {
-    const user = await User.create({username, email, password:await bcrypt.hash(password, 10)});
-    req.session.auth = {
-      userId: user.id,
-    };
-    res.locals.authenticated = true;
-    res.locals.user = user.id;
-    return res.redirect("/");
+    try {
+      const user = await User.create({username, email, password:await bcrypt.hash(password, 10)});
+      req.session.auth = {
+        userId: user.id,
+      };
+      res.locals.authenticated = true;
+      res.locals.user = user.id;
+      return res.redirect("/");
+    } catch(e){
+      if(e.name === "SequelizeUniqueConstraintError"){
+        return res.render("register", {errors: ["Username and Email must be Unique"]});
+      }
+    }
+
   }
 
   res.render("register", {errors})

@@ -1,6 +1,9 @@
 extends layout.pug
 
 block content
+    if(errors)
+        each error in errors
+            h2.error=error
     form(action="/login", method="post")
         div
             label(for="username") username

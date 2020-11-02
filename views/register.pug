@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body
+extends layout.pug
+
+block content
+        if(errors)
+            each error in errors
+                h2.error=error
         form(action="/users/", method="post")
             div
                 label(for="email") Email
