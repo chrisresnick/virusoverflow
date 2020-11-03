@@ -6,6 +6,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const questionsRouter = require("./routes/questions");
 const { sequelize } = require("./db/models");
 const { port } = require("./config/index.js");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use('/questions', questionsRouter)
 
 // app.get("/home", (req, res) => {
 // 	res.render("layout", {
