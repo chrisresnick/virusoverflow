@@ -10,12 +10,7 @@ const {check, validationResult} = require("express-validator");
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'a/A Express Skeleton Home' });
 // });
-async function requireAuth(req, res, next) {
-  if(!res.locals.authenticated){
-    return res.redirect("/login")
-  }
-  return next();
-}
+
 
 router.get("/test", requireAuth, asyncHandler(async (req, res) => {
   res.send(res.locals.user.username);

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {db, User} = require('../db/models/')
-const {asyncHandler} = require("./utils");
+const {asyncHandler, requireAuth} = require("./utils");
 const {check, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
 
@@ -42,7 +42,7 @@ router.post("/", registerValid, asyncHandler(async (req, res) => {
         userId: user.id,
       };
       res.locals.authenticated = true;
-      res.locals.user = user.id;
+      res.locals.user = user;
       return res.redirect("/");
     } catch(e){
       if(e.name === "SequelizeUniqueConstraintError"){
