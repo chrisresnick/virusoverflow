@@ -3,8 +3,12 @@ const router = express.Router();
 const db = require("../db/models");
 const { asyncHandler, requireAuth } = require("./utils");
 
+router.get("/", (req, res) => {
+    res.render("voteTest");
+});
 
-router.post("/:id\\d/vote", requireAuth, asyncHandler((req, res) => {
+
+router.post("/:id(\\d)/vote", requireAuth, asyncHandler(async (req, res) => {
     const questionId = req.params.id;
     const {isUpVote} = req.body
     const userId = res.locals.user.Id
