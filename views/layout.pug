@@ -4,24 +4,27 @@ html
       block head
         title= title
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/index.css')
   body
-    header
+    header.grid-area-1
       div
-        div
-          a(href="") Icon
-          a(href="")  
-        ol
-          li About
-          li Products
-          li For Teams
-        div
+        a(href="") Icon
+      ol
+        li
+          a(href="") About
+        li
+          a(href="") Products
+        li
+          a(href="") For Teams
+      div
         form(action="")
             div
               input(type="text")
-        ol
-          li Log In
-          li Sign Up
-    div
+      div
+        button Log In
+      div
+        button Sign Up
+    div.grid-area-2
       div
         nav
           ol
@@ -36,4 +39,3 @@ html
                 li Jobs
                 li Companies
                 block content
-
