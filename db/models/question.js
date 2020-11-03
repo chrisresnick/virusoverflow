@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     textArea: {
       allowNull: false,
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      
     }
   }, {
     sequelize,
