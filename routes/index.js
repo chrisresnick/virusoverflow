@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {asyncHandler} = require("./utils");
+const {asyncHandler, requireAuth} = require("./utils");
 const {User} = require("../db/models/index");
 const bcrypt = require("bcryptjs");
 const session = require('express-session');
