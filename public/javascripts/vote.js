@@ -15,6 +15,7 @@ async function vote(e) {
         },
         body: JSON.stringify({isUpVote})
     }).catch(e => console.log(e));
+    if(!res.ok) console.log(res.statusText);
     const {count} = await res.json();
     document.querySelector(`#voteCountFor${questionId}`).innerHTML = count;
 }
