@@ -30,7 +30,6 @@ router.post("/:id(\\d)/vote", requireAuth, asyncHandler(async (req, res) => {
 async function voteSum(questionId){
     let votes = await QuestionVote.findAll({where:{questionId}})
     votes = votes.map(vote => vote.toJSON())
-    console.log("votes", votes);
     return votes.reduce((acc, vote) => {
         return acc + (vote.isUpVote ? 1 : -1);
     }, 0);
