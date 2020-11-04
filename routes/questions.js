@@ -54,4 +54,6 @@ async function voteSum(questionId){
     }, 0);
 }
 
+
+
 module.exports = router;
