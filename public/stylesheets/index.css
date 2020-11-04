@@ -95,7 +95,7 @@ body {
 /* ===================================Footer Grid========================================== */
 .bottom-bar {
     display: grid;
-    width: 1264px;
+    max-width: 1264px;
     padding: 10px;
     padding-top: 30px;
     grid-template-columns: repeat(6, auto);
@@ -267,7 +267,6 @@ input {
 }
 .inputBlock * {
     margin: 5px;
-
 }
 
 .buttonHolder{
