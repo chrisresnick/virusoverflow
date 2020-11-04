@@ -1,21 +1,25 @@
 extends layout.pug
 
 block content
-        if(errors)
-            each error in errors
-                .error
-                    p=error
-        form(action="/users/", method="post")
-            div
-                label(for="email") Email
-                input#email(type="email", name="email")
-            div
-                label(for="username") Username
-                input#username(name="username", type="text")
-            div
-                label(for="password") Password
-                input#password(name="password", type="password")
-            div
-                label(for="password_conf") Confirm Password
-                input#password_conf(name="password_conf", type="password")
-            input(type="submit")
+        .virusForm
+            .formTitle
+                h1 Register for VirusOverflow
+            if(errors)
+                each error in errors
+                    .error
+                        h2=error
+            form(action="/users/", method="post")
+                .inputBlock
+                    label(for="email") Email
+                    input#email(type="email", name="email")
+                .inputBlock
+                    label(for="username") Username
+                    input#username(name="username", type="text")
+                .inputBlock
+                    label(for="password") Password
+                    input#password(name="password", type="password")
+                .inputBlock
+                    label(for="password_conf") Confirm Password
+                    input#password_conf(name="password_conf", type="password")
+                .buttonHolder
+                    button Submit
