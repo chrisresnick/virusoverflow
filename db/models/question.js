@@ -10,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Question.hasMany(models.Answer, {foreignKey: 'questionId'})
-      // Question.hasMany(models.questionVotes, {foreignKey: 'questionId'})
-      Question.belongsTo(models.User, {foreignKey: 'userId'})
+      Question.hasMany(models.Answer, { foreignKey: 'questionId' })
+      Question.hasMany(models.questionVote, { foreignKey: 'questionId' })
+      Question.belongsTo(models.User, { foreignKey: 'userId' })
       // define association here
     }
   };
   Question.init({
-    title : {
+    title: {
       allowNull: false,
       type: DataTypes.STRING(150),
 
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT,
 
-    }
+    },
   }, {
     sequelize,
     modelName: 'Question',

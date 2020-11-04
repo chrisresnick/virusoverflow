@@ -60,8 +60,14 @@
 
 .center-grid-3 {
     grid-area: questionList;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "counter info";
     padding-top: 20px;
 }
+/* ================= question boxes ============================== */
 .center-grid-4 {
     grid-area: bottom;
     padding-top: 50px;
@@ -86,7 +92,6 @@
 .div1{
     grid-area: div1;
     display: flex;
-    f
 }
 .div2{
     grid-area: div2;
@@ -111,4 +116,8 @@
 /* ======================================================================================================== */
 h2 a {
     color: #0077CC;
+}
+
+.classname{
+    border-bottom: .5px solid lightgray;
 }

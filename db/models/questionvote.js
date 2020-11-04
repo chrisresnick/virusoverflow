@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const question = require('./question');
 module.exports = (sequelize, DataTypes) => {
   class QuestionVote extends Model {
     /**
@@ -10,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      QuestionVote.belongsTo(models.Question, { foreignKey: "questionId" })
+      QuestionVote.belongsTo(models.User, { foreignKey: "userId" })
       // define association here
     }
   };

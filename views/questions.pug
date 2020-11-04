@@ -23,8 +23,16 @@ block content
             a(href="").linkborder Month
         div.center-grid-3 All the questions
           div
-            div
-              //- each question in questions
+              each question in questions
+                div.classname
+                  div= question.title
+                  div= question.User.username
+                  div= question.textArea
+                  div= question.updatedAt
+                  div votes
+                  div answers
+                  div views
+
         br
         h2.center-grid-4 Looking for more? Browse the <a href="/questions">complete list of questions</a>, or <a href="/tags">popular tags</a>. Help us answer <a href="/unanswered">unanswered questions</a>.
       div.mgrid-2
