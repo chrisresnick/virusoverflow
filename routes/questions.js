@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/models");
+const answer = require("../db/models/answer");
 const { QuestionVote } = require("../db/models/index");
 const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question } = db;
@@ -29,15 +30,16 @@ router.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
-		const question = await db.Question.findByPk(id);
+		const question = await db.Question.findByPk(id, { include: [User] });
 		console.log(question);
 
-		const answers = await db.Answer.findAll({
+		let answers = await db.Answer.findAll({
 			where: {
 				questionId: id,
 			},
 			include: [User],
 		});
+		answers = answers.map((answer) => answer.toJSON());
 		console.log(answers);
 
 		res.render("answers", {
