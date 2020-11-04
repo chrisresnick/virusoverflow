@@ -53,7 +53,9 @@ async function voteSum(questionId){
         return acc + (vote.isUpVote ? 1 : -1);
     }, 0);
 }
-
+router.get("/:id(\\d+)/vote", asyncHandler(async(req, res) => {
+    res.json({count: await voteSum(req.params.id)})
+}));
 
 
 module.exports = router;
