@@ -17,6 +17,8 @@ const questionNotFoundError = (id) => {
 	return err;
 };
 
+// questions post route
+
 router.post(
 	"/",
 	asyncHandler(async (req, res) => {
@@ -26,6 +28,7 @@ router.post(
 	}),
 );
 
+// get route for all the questions
 router.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
@@ -49,6 +52,7 @@ router.get(
 	}),
 );
 
+// post an answer route
 router.post(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
@@ -67,6 +71,8 @@ router.post(
 		res.redirect(`/questions/${questionId}`);
 	}),
 );
+
+// vote route
 
 router.post(
 	"/:id(\\d+)/vote",
