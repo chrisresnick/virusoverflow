@@ -1,39 +1,139 @@
+mixin navBar
+  div.nav-bar
+    nav
+      ol
+        li
+          a(href="").home HOME
+        li
+          ul
+            li PUBLIC
+            li
+              a(href="") Virus Overflow
+            li
+              a(href="") Tags
+            li
+              a(href="") Users
+            li FIND A JOB
+            li
+              a(href="") Jobs
+            li
+              a(href="") Companies
+        li
+          ol
+            li.nav-base
+              div TEAMS
+              div What's this?
+            li.nav-base-2
+              div Icon
+              div Free 30 Day Trail
+
 doctype html
 html
   head
       block head
         title= title
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/index.css')
+        link(rel='stylesheet' href='/stylesheets/questions.css')
   body
-    header
-      div
-        div
+    header.grid-area-1
+      div.top-bar
+        div.tbgrid-1
           a(href="") Icon
-          a(href="")  
         ol
-          li About
-          li Products
-          li For Teams
-        div
-        form(action="")
-            div
-              input(type="text")
-        ol
-          li Log In
-          li Sign Up
-    div
-      div
-        nav
-          ol
-            li Home
-            li
-              ol
-                li Public
-                li Stack Overflow
-                li Tags
-                li Users
-                li Find A Job
-                li Jobs
-                li Companies
-                block content
+          li.tbgrid-2
+            a(href="") About
+          li.tbgrid-3
+            a(href="") Products
+          li.tbgrid-4
+            a(href="") For Teams
+        div.tbgrid-5
+          form(action="")
+              div
+                input(type="text")
+        div.tbgrid-6
+          button.button Log In
+        div.tbgrid-7
+          button Sign Up
 
+    div.grid-area-2
+      block content
+
+    footer.grid-area-3
+      div.bottom-bar
+        div.bbgrid-1
+          h1 icon
+        nav.naving
+          div.bbgrid-2
+            h5
+              a(href="") VIRUS OVERFLOW
+            ul
+              li
+                a(href="") Questions
+              li
+                a(href="") Jobs
+              li
+                a(href="") Developer Jobs Directory
+              li
+                a(href="") Salary Calculator
+              li
+                a(href="") Help
+              li
+                a(href="") Mobile
+              li
+                a(href="") Disable Responsiveness
+          div.bbgrid-3
+            h5
+              a(href="") PRODUCTS
+            ul
+              li
+                a(href="") Teams
+              li
+                a(href="") Talent
+              li
+                a(href="") Advertising
+              li
+                a(href="") Enterprise
+          div.bbgrid-4
+            h5
+              a(href="") COMPANY
+            ul
+              li
+                a(href="") About
+              li
+                a(href="") Press
+              li
+                a(href="") Work Here
+              li
+                a(href="") Legal
+              li
+                a(href="") Privacy Policy
+              li
+                a(href="") Contact Us
+          div.bbgrid-5
+            h5
+              a(href="") STACK EXCHANGE NETWORK
+            ul
+              li
+                a(href="") Technology
+              li
+                a(href="") Life / Arts
+              li
+                a(href="") Culture / Recreation
+              li
+                a(href="") Science
+              li
+                a(href="") Other
+        div.bbgrid-6
+          ul.links
+            li
+              a(href="") Blog
+            li
+              a(href="") Facebook
+            li
+              a(href="") Twitter
+            li
+              a(href="") LinkedIn
+            li
+              a(href="") Blog
+          p "site design / logo by virusoverflow"

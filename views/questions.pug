@@ -1,0 +1,87 @@
+extends layout.pug
+
+
+block content
+  div.questions
+    div.nav-grid-area
+      +navBar
+    div.main-grid-area
+      div.mgrid-1
+        div.center-grid-1
+          div
+            h1 Questions
+          div
+            button Ask Question
+        div.center-grid-2
+          div
+          div.links-grid
+            a(href="").linkborder Interesting
+            a(href="").linkborder Bountied
+              span 367
+            a(href="").linkborder Hot
+            a(href="").linkborder Week
+            a(href="").linkborder Month
+        div.center-grid-3 All the questions
+          div
+            div
+              //- each question in questions
+        br
+        h2.center-grid-4 Looking for more? Browse the <a href="/questions">complete list of questions</a>, or <a href="/tags">popular tags</a>. Help us answer <a href="/unanswered">unanswered questions</a>.
+      div.mgrid-2
+        div.div1
+          ul
+            div The Virusflow Blog
+            li
+              div icon
+              div Blog Title
+            li
+              div icon
+              div Blog Title
+            div Featured on Meta
+            li
+              div icon
+              div Blog Title
+            li
+              div icon
+              div Blog Title
+            li
+              div icon
+              div Blog Title
+            div Hot Meta Post
+            li
+              div votes
+              div Post
+            li
+              div votes
+              div Post
+        div.div2
+          div Custom Filters
+          ul
+            li
+              a(href="") Create a custom filter
+        div.div3
+          div
+            span icon
+            span Watched Tags
+            a(href="") edit
+          div
+          //-   each tag in tags create a div element
+        div.div4
+          div
+            span icon
+            span Ignored Tags
+            a(href="") edit
+          div
+            a(href="") Add an ignored tag
+        div.div5
+          div image
+          div blank space
+          div image
+        div.div6
+          h4
+            a(href="") Hot Covid Questions
+          ul
+            //- each hotquest in hotquestions create and li
+        div.div7
+          div icon
+          a(href="") Recent questions feed
