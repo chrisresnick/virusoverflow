@@ -9,14 +9,20 @@ block content
         ul
             p Asked by #{question.User.username} #{question.createdAt} ago
 
-        button(class="upVoteFor#{question.id}") Up
+        button(id=`upVoteFor${question.id}`) Up
 
-        button(class="downVoteFor#{question.id}") Down
+        button(id=`downVoteFor${question.id}`) Down
 
-        div(class="#voteCountFor#{question.id}") Vote Count
-            ul
-                h2 Question:
-                p= question.textArea
+        div(id=`voteCountFor${question.id}`) Vote Count
+        ul
+            h2 Question:
+            p= question.textArea
+
+            h2 Answers:
+                each answer in answers
+                    p= answer.textField
+            
+
 
                 //- h4 Answers
                 //- each answer in answers
