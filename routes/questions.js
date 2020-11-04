@@ -4,7 +4,7 @@ const db = require("../db/models");
 const answer = require("../db/models/answer");
 const { QuestionVote } = require("../db/models/index");
 const { asyncHandler, requireAuth } = require("./utils");
-const { User, Question } = db;
+const { User, Question, Answer } = db;
 
 router.get("/", (req, res) => {
 	res.render("voteTest");
@@ -31,7 +31,7 @@ router.get(
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		const question = await db.Question.findByPk(id, { include: [User] });
-		console.log(question);
+		// console.log(question);
 
 		let answers = await db.Answer.findAll({
 			where: {
@@ -40,12 +40,31 @@ router.get(
 			include: [User],
 		});
 		answers = answers.map((answer) => answer.toJSON());
-		console.log(answers);
+		// console.log(answers);
 
 		res.render("answers", {
 			question,
 			answers,
 		});
+	}),
+);
+
+router.post(
+	"/:id(\\d+)",
+	asyncHandler(async (req, res) => {
+		// console.log("body======", req.body);
+		const { answer } = req.body;
+		const userId = res.locals.user.id;
+		// console.log(`UserId:`, userId);
+		// console.log(answer);
+		const questionId = parseInt(req.params.id, 10);
+
+		const yourAnswer = await Answer.create({
+			textField: answer,
+			questionId,
+			userId,
+		});
+		res.redirect(`/questions/${questionId}`);
 	}),
 );
 

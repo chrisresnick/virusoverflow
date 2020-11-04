@@ -21,6 +21,10 @@ block content
             h2 Answers:
                 each answer in answers
                     p= answer.textField
+
+            form(action=`/questions/${question.id}` method="post")
+                textarea(name="answer", cols="30", rows="10") Your answer
+                button(type="submit") Post Your Answer
             
 
 
