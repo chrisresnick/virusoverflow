@@ -15,6 +15,100 @@
     display: grid;
 }
 
+/* ================================ Main Section Grid ===============================================  */
 .main-grid-area{
     grid-area: main;
+    display: grid;
+    padding: 24px;
+    grid-template-columns: auto 300px;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "center sidebar";
+}
+                 /* =================  center grid ================== */
+.mgrid-1 {
+    grid-area: center;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 5% auto 5%;
+    grid-template-areas:
+        "questions"
+        "links"
+        "questionList"
+        "bottom";
+}
+
+.center-grid-1 {
+    grid-area: questions;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 27px;
+}
+.center-grid-2 {
+    grid-area: links;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.linkborder{
+    border: 1px solid gray;
+    font-size: 13px;
+    padding: 10px 15px;
+}
+
+.center-grid-3 {
+    grid-area: questionList;
+    padding-top: 20px;
+}
+.center-grid-4 {
+    grid-area: bottom;
+    padding-top: 50px;
+}
+
+                /* ================== right sidebar ================ */
+.mgrid-2 {
+    grid-area: sidebar;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "div1"
+        "div2"
+        "div3"
+        "div4"
+        "div5"
+        "div6"
+        "div7";
+}
+
+.div1{
+    grid-area: div1;
+    display: flex;
+    f
+}
+.div2{
+    grid-area: div2;
+}
+.div3{
+    grid-area: div3;
+}
+.div4{
+    grid-area: div4;
+}
+.div5{
+    grid-area: div5;
+}
+.div6{
+    grid-area: div6;
+}
+.div7{
+    grid-area: div7;
+}
+
+
+/* ======================================================================================================== */
+h2 a {
+    color: #0077CC;
 }
