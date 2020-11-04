@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Question.init({
+    title : {
+      allowNull: false,
+      type: DataTypes.STRING(150),
+
+    },
     userId: {
       allowNull: false,
       type: DataTypes.INTEGER,

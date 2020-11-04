@@ -1,0 +1,13 @@
+extends layout.pug
+
+
+block content
+    form(action="/questions", method="post")
+        div
+            label(for="title") Title
+            input(name="title", type="text")
+        div
+            label(for="body") Body
+            input#textarea(type="text")(name="body", type="textarea")
+        div
+            input(type="submit" value="Review Your Question")

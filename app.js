@@ -4,13 +4,15 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const questionsRouter = require("./routes/questions");
-const { sequelize } = require("./db/models");
-const { port } = require("./config/index.js");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-//const restoreUser = require("")
+const {sequelize} = require('./db/models');
+const {port} = require("./config/index.js");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const {User} = require("./db/models/index")
+
 
 const app = express();
 const store = new SequelizeStore({
@@ -25,7 +27,6 @@ app.use(
 	}),
 );
 store.sync();
-//app.use(restoreUser);
 
 // view engine setup
 app.set("view engine", "pug");
@@ -34,11 +35,36 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(async (req, res, next) => {
+  console.log(req.session);
+
+  if (req.session.auth) {
+    const { userId } = req.session.auth;
+
+    try {
+      const user = await User.findByPk(userId);
+
+      if (user) {
+        res.locals.authenticated = true;
+        res.locals.user = user;
+        next();
+      }
+    } catch (err) {
+      res.locals.authenticated = false;
+      next(err);
+    }
+  } else {
+    res.locals.authenticated = false;
+    next();
+  }
+})
+
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use('/questions', questionsRouter)
+app.use("/questions", questionsRouter);
 
 // app.get("/home", (req, res) => {
 // 	res.render("layout", {
