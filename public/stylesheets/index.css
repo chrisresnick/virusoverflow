@@ -249,3 +249,33 @@ input {
     font: 12px Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 */
+
+.virusForm{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+.formTitle{
+    text-align: center;
+}
+
+.inputBlock {
+ max-width: 33%;
+}
+.inputBlock * {
+    margin: 5px;
+
+}
+
+.buttonHolder{
+    display:flex;
+    justify-content: center;
+}
+
+.error {
+    background-color: rgba(255, 0, 0, .25);
+    margin-top: 5px;
+}
