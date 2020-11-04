@@ -28,9 +28,9 @@ router.get("/login", (req, res) => {
   res.render("login");
 })
 
-router.get("/questions", (req, res) => {
-  res.render("questions");
-})
+// router.get("/questions", (req, res) => {
+//   res.render("questions");
+// })
 
 router.post('/logout', (req, res) => {
   delete req.session.auth;

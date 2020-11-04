@@ -7,7 +7,6 @@ const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question } = db;
 
 
-console.log(db);
 router.get("/", (req, res) => {
     res.render("voteTest");
 });
@@ -29,7 +28,7 @@ router.post("/", asyncHandler(async (req, res) => {
 
 
 
-router.post("/:id\\d/vote", requireAuth, asyncHandler(async(req, res) => {
+router.post("/:id(\\d+)/vote", requireAuth, asyncHandler(async(req, res) => {
 
     const questionId = req.params.id;
     const {isUpVote} = req.body
@@ -50,7 +49,7 @@ router.post("/:id\\d/vote", requireAuth, asyncHandler(async(req, res) => {
 async function voteSum(questionId){
     let votes = await QuestionVote.findAll({where:{questionId}})
     votes = votes.map(vote => vote.toJSON())
-//     return votes.reduce((acc, vote) => {
+     return votes.reduce((acc, vote) => {
         return acc + (vote.isUpVote ? 1 : -1);
     }, 0);
 }
