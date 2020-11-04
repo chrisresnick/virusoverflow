@@ -11,7 +11,7 @@ block content
             h2= question.textArea
         div
             button(id=`upVoteFor${question.id}` class="up-vote-button") Up
-        div(id=`voteCountFor${question.id}`) Vote Count
+        div(id=`voteCountFor${question.id}` class="voteCount") Vote Count
         div
             button(id=`downVoteFor${question.id}` class="down-vote-button") Down
         p Asked by #{question.User.username} #{question.createdAt} ago
@@ -21,11 +21,11 @@ block content
         each answer in answers
             p= answer.textField
                 div
-                    button(id=`upVoteFor${answer.id}` class="up-vote-button") Up
+                    button(id=`upAnswerVoteFor${answer.id}` class="up-vote-button") Up
 
-                div(id=`voteCountFor${answer.id}`) Vote Count
+                div(id=`answerVoteCountFor${answer.id}`  class="voteCount") Vote Count
                 div
-                    button(id=`downVoteFor${answer.id}` class="down-vote-button") Down
+                    button(id=`downAnswerVoteFor${answer.id}` class="down-vote-button") Down
 
         form(action=`/questions/${question.id}` method="post")
             textarea(name="answer", cols="40", rows="5") Your answer
