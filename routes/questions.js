@@ -1,7 +1,16 @@
-var express = require('express');
-var router = express.Router();
-const { db, User, Question } = require('../db/models/');
-const { asyncHandler, requireAuth } = require('./utils');
+
+const express = require("express");
+const router = express.Router();
+const db = require("../db/models");
+const { QuestionVote } = require("../db/models/index")
+const { asyncHandler, requireAuth } = require("./utils");
+const { User, Question } = db;
+
+
+console.log(db);
+router.get("/", (req, res) => {
+    res.render("voteTest");
+});
 
 
 const questionNotFoundError = (id) => {
@@ -21,12 +30,13 @@ router.post("/", asyncHandler(async (req, res) => {
 
 
 router.post("/:id\\d/vote", requireAuth, asyncHandler(async(req, res) => {
+
     const questionId = req.params.id;
     const {isUpVote} = req.body
-    const userId = res.locals.user.Id
-    const existingVote = db.Vote.findOne({where:{questionId, userId}})
+    const userId = res.locals.user.id;
+    const existingVote = await QuestionVote.findOne({where:{questionId, userId}})
     if(!existingVote){ //if the user hasnt voted on this question yet, create a new vote
-        const vote = await db.Vote.create({questionId, userId, isUpVote});
+        const vote = await QuestionVote.create({questionId, userId, isUpVote});
     }
     else if(existingVote.isUpVote != isUpVote) { //change the vote
         existingVote.isUpVote = isUpVote;
@@ -34,12 +44,15 @@ router.post("/:id\\d/vote", requireAuth, asyncHandler(async(req, res) => {
     } else { //delete the vote if they're clicking on the same button again
         await existingVote.destroy();
     }
-    return res.json({count: voteSum(questionId)});
+    return res.json({count: await voteSum(questionId)});
 }));
 
 async function voteSum(questionId){
-    const votes = await Vote.findAll({where:{questionId}})
-    return votes.reduce((acc, vote) => acc + vote.isUpVote ? 1 : -1);
+    let votes = await QuestionVote.findAll({where:{questionId}})
+    votes = votes.map(vote => vote.toJSON())
+//     return votes.reduce((acc, vote) => {
+        return acc + (vote.isUpVote ? 1 : -1);
+    }, 0);
 }
 
 module.exports = router;
