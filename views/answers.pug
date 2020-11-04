@@ -7,7 +7,7 @@ block content
         input(name='search' type='text' placeholder='Search....')
 
         ul
-        p Asked by #{question.user.username} #{question.createdAt} ago
+            p Asked by #{question.User.username} #{question.createdAt} ago
 
         button(class="upVoteFor#{question.id}") Up
 
@@ -16,7 +16,7 @@ block content
         div(class="#voteCountFor#{question.id}") Vote Count
             ul
                 h2 Question:
-                p= question
+                p= question.textArea
 
                 //- h4 Answers
                 //- each answer in answers
