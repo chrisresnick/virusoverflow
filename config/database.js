@@ -12,5 +12,6 @@ const {
       database,
       host,
       dialect: 'postgres',
+      seederStorage: 'sequelize'
     },
   };

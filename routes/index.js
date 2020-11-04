@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+
 const { asyncHandler } = require("./utils");
 const { User } = require("../db/models/index");
+
 const bcrypt = require("bcryptjs");
 const session = require('express-session');
 const { check, validationResult } = require("express-validator");
@@ -10,6 +12,7 @@ const { check, validationResult } = require("express-validator");
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'a/A Express Skeleton Home' });
 // });
+
 async function requireAuth(req, res, next) {
   if (!res.locals.authenticated) {
     return res.redirect("/login")
