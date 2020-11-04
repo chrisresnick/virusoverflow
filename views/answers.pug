@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+    script(src="/javascripts/vote.js")
+    div
+        h1= question.title
+        input(name='search' type='text' placeholder='Search....')
+
+        ul
+        p Asked by #{question.user.username} #{question.createdAt} ago
+
+        button(class="upVoteFor#{question.id}") Up
+
+        button(class="downVoteFor#{question.id}") Down
+
+        div(class="#voteCountFor#{question.id}") Vote Count
+            ul
+                h2 Question:
+                p= question
+
+                //- h4 Answers
+                //- each answer in answers
+                //-    .container
+                //-         div= answer.textarea
+                //-             p= answer.User.username
+                //-             p= answer.createdAt
