@@ -1,14 +1,12 @@
 body {
     display: grid;
-    /* border: 5px solid black; */
-    /* font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; */
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     background-color: white;
     color: black;
-    grid-template-rows: 5% 80% 15%;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 50px 750px 272px;
     grid-template-areas:
         "header header header header header header header header"
-        ". nav main main main main main main"
+        "main main main main main main main main"
         "footer footer footer footer footer footer footer footer";
 }
 
@@ -16,58 +14,205 @@ body {
     grid-area: header;
     display:flex;
     flex-direction: row;
-    border: 5px solid green;
-    /* justify-content: space-around; */
-    /* align-content: center; */
-    /* height: 50px;
-    width: auto; */
-    /* max-width: 97.2307692rem; */
-    margin-right: auto;
-    margin-left: auto;
-    color: #242729;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
     font: 10px Arial, Helvetica, sans-serif;
-    background: #FAFAFB;
-    border-top: 3px solid #F48024;
+    color: #242729;
+    background-color: #FAFAFB;
+    border-top: 3px solid #f48024;;
+    box-shadow: 0px 1px 5px lightgrey;
 }
 
 .grid-area-2 {
-    grid-area: nav;
-    border: 5px solid blue;
-
+    grid-area: main;
+    background-size: auto;
 }
 
 .grid-area-3 {
-    grid-area: main;
-    border: 5px solid orange;
-}
-
-.grid-area-4 {
     grid-area: footer;
-    border: 5px solid purple;
+    display: flex;
+    background-color: #242729;
+    color: #6a737c;
+    justify-content: center;
+    color: #6a737c;
 }
 
-/* h1 {
-    color: #555555;
-} */
+/* ===================================Header Grid===================================================== */
+.top-bar {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    grid-template-areas:
+        "icon about products forTeams search login signUp";
+}
 
+.tbgrid-1{
+    grid-area: icon;
+    padding-left: 10px;
+    padding-right: 30px;
+}
+.tbgrid-2{
+    grid-area: about;
+    display: inline-block;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tbgrid-3{
+    grid-area: products;
+    display: inline-block;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tbgrid-4{
+    grid-area: forTeams;
+    display: inline-block;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tbgrid-5{
+    grid-area: search;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tbgrid-6{
+    grid-area: login;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tbgrid-7{
+    grid-area: signUp;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/* ========================================================================================== */
 
-/*
-ol {
+/* ===================================Footer Grid========================================== */
+.bottom-bar {
+    display: grid;
+    width: 1264px;
+    padding: 10px;
+    padding-top: 30px;
+    grid-template-columns: repeat(6, auto);
+    justify-content: space-evenly;
+    grid-template-areas:
+        "icon VO products company exchange links";
+}
+
+.bbgrid-1{
+    grid-area: icon;
+}
+.bbgrid-2{
+    grid-area: VO;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.bbgrid-3{
+    grid-area: products;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.bbgrid-4{
+    grid-area: company;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.bbgrid-5{
+    grid-area: exchange;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.bbgrid-6{
+    grid-area: links;
+}
+
+/* ================================================================================== */
+
+/* ======================= Side Nav Bar ================================== */
+.nav-bar {
+    display: block;
+    color: #535A60;
+    border-right: 1px solid lightgray;
+}
+
+.nav-bar ul a {
+    padding: 15px;
+}
+
+.nav-base{
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
-} */
 
-/* header{
+}
 
-} */
+.nav-base-2{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
 
-/*
-.tags {
-    background-color: #E1ECF4;
-    color: #39739D;
-    margin: 2px 2px 2px 0px;
-    padding: 4.8px 6px;
-    font: 12px Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.nav-base div{
+    font-size: 11px;
+    margin-top: 15px;
+}
+
+.nav-base-2 div {
+    font-size: 13px;
+}
+
+a{
+    text-decoration-line: none;
+}
+
+ol{
+    text-decoration-line: none;
+    list-style-type: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.nav-bar li {
+    margin-top: 20px;
+}
+
+ul li {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+li a {
+    font-size: 13px;
+}
+
+.home {
+    font-weight: bold;
+}
+
+.nav-selected {
+    color: #0C0D0E;
+    background-color: #EFF0F1;
+    border-left: 2px solid #f48024;
+}
+/* ========================================================================== */
+.naving{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 button {
@@ -77,10 +222,30 @@ button {
     font: 13px Arial, "Helvetica Neue", Helvetica, sans-serif;
     position: relative;
     display: inline-block;
+}
+
+.button {
+    color:  #39739D;
+    background-color: #E1ECF4;
+    padding: 10.4px;
+    font: 13px Arial, "Helvetica Neue", Helvetica, sans-serif;
+    position: relative;
+    display: inline-block;
 
 }
 
 input {
     background: #FFFFFF;
+    width: 700px;
     padding: 7.8px 9.1px 7.8px 32px;
-} */
+}
+
+/*
+.tags {
+    background-color: #E1ECF4;
+    color: #39739D;
+    margin: 2px 2px 2px 0px;
+    padding: 4.8px 6px;
+    font: 12px Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+*/

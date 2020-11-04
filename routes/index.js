@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-const {asyncHandler} = require("./utils");
-const {User} = require("../db/models/index");
+const { asyncHandler } = require("./utils");
+const { User } = require("../db/models/index");
 const bcrypt = require("bcryptjs");
 const session = require('express-session');
-const {check, validationResult} = require("express-validator");
+const { check, validationResult } = require("express-validator");
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'a/A Express Skeleton Home' });
 // });
 async function requireAuth(req, res, next) {
-  if(!res.locals.authenticated){
+  if (!res.locals.authenticated) {
     return res.redirect("/login")
   }
   return next();
@@ -25,6 +25,10 @@ router.get("/login", (req, res) => {
   res.render("login");
 })
 
+router.get("/questions", (req, res) => {
+  res.render("questions");
+})
+
 router.post('/logout', (req, res) => {
   delete req.session.auth;
   res.redirect(req.header('Referer'));
@@ -32,23 +36,23 @@ router.post('/logout', (req, res) => {
 
 const loginValidator = [
   check("username")
-    .exists({checkFalsy: true})
+    .exists({ checkFalsy: true })
     .withMessage("Username is required"),
   check("password")
-      .exists({checkFalsy: true})
-      .withMessage("Password is required")]
+    .exists({ checkFalsy: true })
+    .withMessage("Password is required")]
 
 router.post('/login', loginValidator, asyncHandler(async (req, res) => {
   const validationErrors = validationResult(req);
-  if(!validationErrors.isEmpty()) {
-    return res.render("login", {errors: validationErrors.errors.map(err => err.msg)});
+  if (!validationErrors.isEmpty()) {
+    return res.render("login", { errors: validationErrors.errors.map(err => err.msg) });
   }
-  const {username, password} = req.body;
-  const user = await User.findOne({where:{username}});
-  if(!user){
-    return res.render("login", {errors: ["Username and Password Combination not valid"]})
+  const { username, password } = req.body;
+  const user = await User.findOne({ where: { username } });
+  if (!user) {
+    return res.render("login", { errors: ["Username and Password Combination not valid"] })
   }
-  if(await bcrypt.compare(password, user.password.toString())){
+  if (await bcrypt.compare(password, user.password.toString())) {
     req.session.auth = {
       userId: user.id,
     };
@@ -58,7 +62,7 @@ router.post('/login', loginValidator, asyncHandler(async (req, res) => {
 
   }
   else {
-    return res.render("/login", {errors: ["Username and Password Combination not valid"]})
+    return res.render("/login", { errors: ["Username and Password Combination not valid"] })
   }
 }));
 
