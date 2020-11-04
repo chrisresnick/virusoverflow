@@ -1,0 +1,7 @@
+.container {
+	display: grid;
+}
+
+.vote-button {
+	background-color: red;
+}

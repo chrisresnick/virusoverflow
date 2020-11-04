@@ -1,36 +1,32 @@
 extends layout.pug
 
 block content
+    link(rel="stylesheet", href="/stylesheets/answers.css")
     script(src="/javascripts/vote.js")
-    div
-        h1= question.title
-        input(name='search' type='text' placeholder='Search....')
+    div.container
+        h2= question.title
 
-        ul
-            p Asked by #{question.User.username} #{question.createdAt} ago
-
-        button(id=`upVoteFor${question.id}`) Up
-
-        button(id=`downVoteFor${question.id}`) Down
-
+        h1 Question:
+        a(href=`/questions/${question.id}`)
+            h2= question.textArea
+        div
+            button(id=`upVoteFor${question.id}` class="up-vote-button") Up
         div(id=`voteCountFor${question.id}`) Vote Count
-        ul
-            h2 Question:
-            p= question.textArea
+        div
+            button(id=`downVoteFor${question.id}` class="down-vote-button") Down
+        p Asked by #{question.User.username} #{question.createdAt} ago
 
-            h2 Answers:
-                each answer in answers
-                    p= answer.textField
+        
+        h1 Answers:
+        each answer in answers
+            p= answer.textField
+                div
+                    button(id=`upVoteFor${answer.id}` class="up-vote-button") Up
 
-            form(action=`/questions/${question.id}` method="post")
-                textarea(name="answer", cols="30", rows="10") Your answer
-                button(type="submit") Post Your Answer
-            
+                div(id=`voteCountFor${answer.id}`) Vote Count
+                div
+                    button(id=`downVoteFor${answer.id}` class="down-vote-button") Down
 
-
-                //- h4 Answers
-                //- each answer in answers
-                //-    .container
-                //-         div= answer.textarea
-                //-             p= answer.User.username
-                //-             p= answer.createdAt
+        form(action=`/questions/${question.id}` method="post")
+            textarea(name="answer", cols="40", rows="5") Your answer
+            button(type="submit") Post Your Answer
