@@ -1,18 +1,21 @@
 extends layout.pug
 
 block content
-    if(errors)
-        each error in errors
-            .error
-                p=error
-    form(action="/login", method="post")
-        div
-            label(for="username") username
-            input#username(name="username", type="text")
-        div
-            label(for="password") password
-            input#password(name="password", type="password")
-        div
-            button Log In
-    form(action="/logout", method ="post")
-        button Log Out
+    .virusForm
+        if(errors)
+            each error in errors
+                .error
+                    h2=error
+        .formTitle
+            h1 Log in
+        form(action="/login", method="post")
+            .inputBlock
+                label(for="username") username
+                input#username(name="username", type="text")
+            .inputBlock
+                label(for="password") password
+                input#password(name="password", type="password")
+            .buttonHolder
+                button Log In
+        form(action="/logout", method ="post")
+            button Log Out
