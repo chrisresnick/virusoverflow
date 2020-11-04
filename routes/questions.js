@@ -1,8 +1,11 @@
+
 const express = require("express");
 const router = express.Router();
 const db = require("../db/models");
-const {QuestionVote} = require("../db/models/index")
+const { QuestionVote } = require("../db/models/index")
 const { asyncHandler, requireAuth } = require("./utils");
+const { User, Question } = db;
+
 
 console.log(db);
 router.get("/", (req, res) => {
@@ -10,7 +13,24 @@ router.get("/", (req, res) => {
 });
 
 
-router.post("/:id(\\d)/vote", requireAuth, asyncHandler(async (req, res) => {
+const questionNotFoundError = (id) => {
+    const err = new Error(`Question with id of ${id} not found`)
+    err.title = "Question not found"
+    err.status = 404
+    return(err)
+}
+
+
+router.post("/", asyncHandler(async (req, res) => {
+    const { userId, textArea } = req.body;
+    const question = await Question.create({ userId, textArea })
+    res.status(200).json({ question })
+}))
+
+
+
+router.post("/:id\\d/vote", requireAuth, asyncHandler(async(req, res) => {
+
     const questionId = req.params.id;
     const {isUpVote} = req.body
     const userId = res.locals.user.id;
@@ -30,7 +50,7 @@ router.post("/:id(\\d)/vote", requireAuth, asyncHandler(async (req, res) => {
 async function voteSum(questionId){
     let votes = await QuestionVote.findAll({where:{questionId}})
     votes = votes.map(vote => vote.toJSON())
-    return votes.reduce((acc, vote) => {
+//     return votes.reduce((acc, vote) => {
         return acc + (vote.isUpVote ? 1 : -1);
     }, 0);
 }
