@@ -65,7 +65,7 @@ router.post('/login', loginValidator, asyncHandler(async (req, res) => {
 
   }
   else {
-    return res.render("/login", { errors: ["Username and Password Combination not valid"] })
+    return res.render("login", { errors: ["Username and Password Combination not valid"] })
   }
 }));
 
