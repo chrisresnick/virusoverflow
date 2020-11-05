@@ -6,6 +6,13 @@
     "header"
     "main";
 }
+.header {
+    
+    display: grid;
+    grid-area: header;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
 
 .qmgrid {
     display: grid;

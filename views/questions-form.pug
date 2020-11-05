@@ -2,17 +2,19 @@ extends layout.pug
 
 
 block content
-    form(action="/questions", method="post")
-        div.qfgrid-1
-            label(for="title") Title
-                p Be specific and imagine you're asking a question to another person
-            input(name="title", type="text")
-        div.qfgrid-2
-            label(for="body") Body
-                p Include all the information someone would need to answer you question
-            textarea(type="text" name="body")
-            div
-                label(for="body") Tags
-                    p Add up to 5 tags to describe what your question is about
-        div
-            button(type="submit") Review Your Question
+    div.header Ask a Question
+        .virusform
+            form(action="/questions", method="post")
+                div.qfgrid-1
+                    label(for="title") Title
+                        p Be specific and imagine you're asking a question to another person
+                    input(name="title", type="text")
+                div.qfgrid-2
+                    label(for="body") Body
+                        p Include all the information someone would need to answer you question
+                    textarea(type="text" name="body")
+                    div
+                        label(for="body") Tags
+                            p Add up to 5 tags to describe what your question is about
+                div
+                    button(type="submit") Review Your Question
