@@ -2,12 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { asyncHandler } = require("./utils");
-<<<<<<< HEAD
 const { User, Question, Answer } = require("../db/models/index");
-=======
-const { User } = require("../db/models/index");
-const db = require("../db/models")
->>>>>>> master
 
 const bcrypt = require("bcryptjs");
 const session = require('express-session');
@@ -33,8 +28,8 @@ router.get("/test", requireAuth, asyncHandler(async (req, res) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const questions = await db.Question.findAll({
-      include: [User, db.Answer]
+    const questions = await Question.findAll({
+      include: [User, Answer]
     })
     // console.log(questions);
     res.render('questions', { questions });
@@ -89,12 +84,14 @@ router.post('/login', loginValidator, asyncHandler(async (req, res) => {
   }
   else {
     return res.render("login", { errors: ["Username and Password Combination not valid"] })
-<<<<<<< HEAD
   }
 }));
 
 router.post("/search", asyncHandler(async (req, res) => {
-  const words = sw.removeStopwords(req.body.searchTerm.split(" "));
+  const searchTerm = req.body.searchTerm.trim();
+  if(searchTerm.length === 0) return res.redirect("/")
+  const words = sw.removeStopwords(searchTerm.split(" "));
+  //if(words.length === 0) return res.redirect("/");
   const re = words.map(word => `%${word}%`);
   console.log("re", re);
   const results = {}
@@ -104,11 +101,12 @@ router.post("/search", asyncHandler(async (req, res) => {
       {[Op.or]:
         [{textArea: {[Op.iLike]: term}},
         {title:    {[Op.iLike]: term}}]
-      }
+      },
+      include: User
     })
-    console.log("questions:", questions);
+    //console.log("questions:", questions);
     let answers = await Answer.findAll({where:{textField: {[Op.iLike]: term}}})
-    console.log("answers:", answers);
+    //console.log("answers:", answers);
     questions.forEach(question => {
       if(!(question.id in results)) results[question.id] = {count:0, question};
       results[question.id].count += countOccur(question.textArea, term.substring(1, term.length-1));
@@ -117,15 +115,14 @@ router.post("/search", asyncHandler(async (req, res) => {
     answers.forEach(async answer => {
         console.log("questionId", answer.questionId)
         if(!(answer.questionId in results)){
-          let thisQues = await Question.findByPk(answer.questionId);
+          let thisQues = await Question.findByPk(answer.questionId, {include: User});
           results[answer.questionId] = {count: 0, question: thisQues};
         };
         results[answer.questionId].count += countOccur(answer.textFeild, term.substring(1, term.length-1));;
     });
-=======
->>>>>>> master
   }
   const releventQuestions = Object.keys(results);
+  if(releventQuestions.length === 0) return res.render("noneFound");
   releventQuestions.sort((a,b) => {
     const aVal = results[a].count;
     const bVal = results[b].count;
