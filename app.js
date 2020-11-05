@@ -8,10 +8,12 @@ const session = require("express-session");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const questionsRouter = require("./routes/questions");
-const { sequelize } = require("./db/models");
-const { port } = require("./config/index.js");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-const { User } = require("./db/models/index");
+const answersRouter = require("./routes/answer")
+const {sequelize} = require('./db/models');
+const {port} = require("./config/index.js");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const {User} = require("./db/models/index")
+
 
 const app = express();
 const store = new SequelizeStore({
@@ -63,6 +65,7 @@ app.use(async (req, res, next) => {
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/questions", questionsRouter);
+app.use("/answers", answersRouter);
 
 // app.get("/home", (req, res) => {
 // 	res.render("layout", {
