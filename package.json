@@ -20,7 +20,8 @@
     "per-env": "^1.0.2",
     "pg": "^8.4.2",
     "pug": "2.0.4",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "stopword": "^1.0.3"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
