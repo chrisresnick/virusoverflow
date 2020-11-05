@@ -1,0 +1,40 @@
+.class{
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    grid-template-columns: auto ;
+    grid-area:
+    "header"
+    "main";
+}
+
+.qmgrid {
+    display: grid;
+    grid-area: main;
+    grid-template-rows: auto;
+    grid-template-columns: 7fr 3fr;
+    grid-area:
+    "askForm" "tips";
+}
+
+.mgrid-1{
+    display: grid;
+    grid-area: askForm;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-area:
+    "title"
+    "body"
+    "tags";
+}
+.mgrid-2 {
+    display: grid;
+    grid-area: tips;
+    grid-template-rows: 1fr 6fr 1fr 1fr;
+    grid-template-columns: auto;
+    grid-area:
+    "sidebarHeader"
+    "sidebarContent"
+    "non-programming-questions"
+    "helpfulLInks";
+
+}
