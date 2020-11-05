@@ -28,7 +28,7 @@ router.get("/test", requireAuth, asyncHandler(async (req, res) => {
 router.get("/", async (req, res, next) => {
   try {
     const questions = await db.Question.findAll({
-      include: [User]
+      include: [User, db.Answer]
     })
     // console.log(questions);
     res.render('questions', { questions });
@@ -36,6 +36,11 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 })
+
+router.get("/questions-form", (req, res) => {
+  res.render("questions-form");
+})
+
 
 
 router.get("/login", (req, res) => {
@@ -72,11 +77,12 @@ router.post('/login', loginValidator, asyncHandler(async (req, res) => {
     };
     res.locals.authenticated = true;
     res.locals.user = user.id;
-    res.redirect(req.header('Referer'));
+    // res.redirect(req.header('Referer'));
+    res.redirect("/");
 
   }
   else {
-    return res.render("/login", { errors: ["Username and Password Combination not valid"] })
+    return res.render("login", { errors: ["Username and Password Combination not valid"] })
   }
 }));
 

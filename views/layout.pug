@@ -35,27 +35,27 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/index.css')
         link(rel='stylesheet' href='/stylesheets/questions.css')
-        script(type="javascript" src="/javascripts/vote.js")
+        script(src="/javascripts/vote.js")
   body
     header.grid-area-1
       div.top-bar
         div.tbgrid-1
           a(href="") Icon
         ol
-          li.tbgrid-2
-            a(href="") About
-          li.tbgrid-3
-            a(href="") Products
-          li.tbgrid-4
-            a(href="") For Teams
+          li.tbgrid-2 About
+            a(href="")
+          li.tbgrid-3 Products
+          li.tbgrid-4 For Teams
         div.tbgrid-5
           form(action="")
               div
                 input(type="text")
         div.tbgrid-6
-          button.button Log In
+          form(action="/login")
+            button.button Log In
         div.tbgrid-7
-          button Sign Up
+          form(action="/register")
+            button Sign Up
 
     div.grid-area-2
       block content
