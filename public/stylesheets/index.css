@@ -20,7 +20,7 @@ body {
     font: 10px Arial, Helvetica, sans-serif;
     color: #242729;
     background-color: #FAFAFB;
-    border-top: 3px solid #f48024;;
+    border-top: 3px solid #2e610c;;
     box-shadow: 0px 1px 5px lightgrey;
 }
 
@@ -32,10 +32,10 @@ body {
 .grid-area-3 {
     grid-area: footer;
     display: flex;
-    background-color: #242729;
-    color: #6a737c;
+    background-color: #153002;
+    /* background-color: #242729; */
+    color: #929aa1;
     justify-content: center;
-    color: #6a737c;
 }
 
 /* ===================================Header Grid===================================================== */
@@ -200,7 +200,7 @@ li a {
 .nav-selected {
     color: #0C0D0E;
     background-color: #EFF0F1;
-    border-left: 2px solid #f48024;
+    border-left: 2px solid #2e610c;
 }
 /* ========================================================================== */
 .naving{
@@ -217,7 +217,7 @@ li a {
 
 button {
     color: white;
-    background: #0095FF;
+    background: #2e610c;
     padding: 10.4px;
     font: 13px Arial, "Helvetica Neue", Helvetica, sans-serif;
     position: relative;
@@ -225,7 +225,7 @@ button {
 }
 
 .button {
-    color:  #39739D;
+    color:  #2e610c;
     background-color: #E1ECF4;
     padding: 10.4px;
     font: 13px Arial, "Helvetica Neue", Helvetica, sans-serif;
