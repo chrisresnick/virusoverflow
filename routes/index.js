@@ -78,13 +78,19 @@ router.post("/search", asyncHandler(async (req, res) => {
   const results = {}
   for(let term of re) {
     console.log("term", term);
-    let questions = await Question.findAll({where:{textArea: {[Op.iLike]: term}}})
+    let questions = await Question.findAll({where:
+      {[Op.or]:
+        [{textArea: {[Op.iLike]: term}},
+        {title:    {[Op.iLike]: term}}]
+      }
+    })
     console.log("questions:", questions);
     let answers = await Answer.findAll({where:{textField: {[Op.iLike]: term}}})
     console.log("answers:", answers);
     questions.forEach(question => {
       if(!(question.id in results)) results[question.id] = {count:0, question};
-      results[question.id].count++;
+      results[question.id].count += countOccur(question.textArea, term.substring(1, term.length-1));
+      results[question.id].count += countOccur(question.title, term.substring(1, term.length-1));
     });
     answers.forEach(async answer => {
         console.log("questionId", answer.questionId)
@@ -92,7 +98,7 @@ router.post("/search", asyncHandler(async (req, res) => {
           let thisQues = await Question.findByPk(answer.questionId);
           results[answer.questionId] = {count: 0, question: thisQues};
         };
-        results[answer.questionId].count++;
+        results[answer.questionId].count += countOccur(answer.textFeild, term.substring(1, term.length-1));;
     });
   }
   const releventQuestions = Object.keys(results);
@@ -105,5 +111,15 @@ router.post("/search", asyncHandler(async (req, res) => {
   const questions = releventQuestions.map(q => results[q].question);
   res.json({questions})
 }));
+
+function countOccur(str, subString){
+  let count = 0;
+  let indexOfSub = str.indexOf(subString)
+  while(indexOfSub != -1) {
+    count++;
+    indexOfSub = str.indexOf(subString, indexOfSub+subString.length);
+  }
+  return count;
+}
 
 module.exports = router;
