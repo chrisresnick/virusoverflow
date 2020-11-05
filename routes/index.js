@@ -105,18 +105,21 @@ router.post("/search", asyncHandler(async (req, res) => {
       include: User
     })
     //console.log("questions:", questions);
-    let answers = await Answer.findAll({where:{textField: {[Op.iLike]: term}}})
+    let answers = await Answer.findAll({
+      where:{textField: {[Op.iLike]: term}},
+      include: {model: Question, include: User}
+    })
     //console.log("answers:", answers);
     questions.forEach(question => {
       if(!(question.id in results)) results[question.id] = {count:0, question};
       results[question.id].count += countOccur(question.textArea, term.substring(1, term.length-1));
       results[question.id].count += 2*countOccur(question.title, term.substring(1, term.length-1));
     });
-    answers.forEach(async answer => {
+    answers.forEach(answer => {
         console.log("questionId", answer.questionId)
         if(!(answer.questionId in results)){
-          let thisQues = await Question.findByPk(answer.questionId, {include: User});
-          results[answer.questionId] = {count: 0, question: thisQues};
+          //let thisQues = await Question.findByPk(answer.questionId, {include: User});
+          results[answer.questionId] = {count: 0, question: answer.Question};
         };
         results[answer.questionId].count += countOccur(answer.textFeild, term.substring(1, term.length-1));;
     });
