@@ -90,7 +90,7 @@ router.post("/search", asyncHandler(async (req, res) => {
     questions.forEach(question => {
       if(!(question.id in results)) results[question.id] = {count:0, question};
       results[question.id].count += countOccur(question.textArea, term.substring(1, term.length-1));
-      results[question.id].count += countOccur(question.title, term.substring(1, term.length-1));
+      results[question.id].count += 2*countOccur(question.title, term.substring(1, term.length-1));
     });
     answers.forEach(async answer => {
         console.log("questionId", answer.questionId)
