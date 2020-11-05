@@ -3,12 +3,16 @@ extends layout.pug
 
 block content
     form(action="/questions", method="post")
-        div
+        div.qfgrid-1
             label(for="title") Title
+                p Be specific and imagine you're asking a question to another person
             input(name="title", type="text")
-        div
+        div.qfgrid-2
             label(for="body") Body
-            input#textarea(type="text")(name="body", type="textarea")
+                p Include all the information someone would need to answer you question
+            textarea(type="text" name="body")
+            div
+                label(for="body") Tags
+                    p Add up to 5 tags to describe what your question is about
         div
-            input(type="submit" value="Review Your Question")
-
+            button(type="submit") Review Your Question
