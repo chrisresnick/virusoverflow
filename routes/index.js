@@ -109,7 +109,7 @@ router.post("/search", asyncHandler(async (req, res) => {
     return aVal > bVal ? -1 : 1;
   });
   const questions = releventQuestions.map(q => results[q].question);
-  res.json({questions})
+  res.render("questions", {questions})
 }));
 
 function countOccur(str, subString){
