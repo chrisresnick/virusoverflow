@@ -3,6 +3,7 @@ var router = express.Router();
 
 const { asyncHandler } = require("./utils");
 const { User } = require("../db/models/index");
+const db = require("../db/models")
 
 const bcrypt = require("bcryptjs");
 const session = require('express-session');
@@ -24,13 +25,28 @@ router.get("/test", requireAuth, asyncHandler(async (req, res) => {
   res.send(res.locals.user.username);
 }))
 
+router.get("/", async (req, res, next) => {
+  try {
+    const questions = await db.Question.findAll({
+      include: [User, db.Answer]
+    })
+    // console.log(questions);
+    res.render('questions', { questions });
+  } catch (err) {
+    next(err);
+  }
+})
+
+router.get("/questions-form", (req, res) => {
+  res.render("questions-form");
+})
+
+
+
 router.get("/login", (req, res) => {
   res.render("login");
 })
 
-// router.get("/questions", (req, res) => {
-//   res.render("questions");
-// })
 
 router.post('/logout', (req, res) => {
   delete req.session.auth;
@@ -61,11 +77,12 @@ router.post('/login', loginValidator, asyncHandler(async (req, res) => {
     };
     res.locals.authenticated = true;
     res.locals.user = user.id;
-    res.redirect(req.header('Referer'));
+    // res.redirect(req.header('Referer'));
+    res.redirect("/");
 
   }
   else {
-    return res.render("/login", { errors: ["Username and Password Combination not valid"] })
+    return res.render("login", { errors: ["Username and Password Combination not valid"] })
   }
 }));
 

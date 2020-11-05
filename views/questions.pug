@@ -11,49 +11,58 @@ block content
           div
             h1 Questions
           div
-            button Ask Question
+            form(action="/questions-form")
+              button Ask Question
         div.center-grid-2
           div
           div.links-grid
             a(href="").linkborder Interesting
             a(href="").linkborder Bountied
-              span 367
             a(href="").linkborder Hot
             a(href="").linkborder Week
             a(href="").linkborder Month
-        div.center-grid-3 All the questions
+        div.center-grid-3
           div
-            div
-              //- each question in questions
+              each question in questions
+                div.classname
+                  div.qb-grid1
+                    div(id=`voteCountFor${question.id}` class="voteCount")
+                    div.word votes
+                  div.qb-grid2
+                    div 0
+                    //- div(id=`answerVoteCountFor${answer.id}` class="voteCount")
+                    div.word answer
+                  div.qb-grid3
+                    div 0
+                    div.word views
+                  div.qb-grid4.questionLink= question.title
+                  div.qb-grid5.word tags
+                  div.qb-grid6
+                    div.word User
+                      span.word= question.User.username
+                    div.word modified
+                      span.word= question.updatedAt.toDateString()
         br
         h2.center-grid-4 Looking for more? Browse the <a href="/questions">complete list of questions</a>, or <a href="/tags">popular tags</a>. Help us answer <a href="/unanswered">unanswered questions</a>.
       div.mgrid-2
         div.div1
-          ul
-            div The Virusflow Blog
-            li
-              div icon
-              div Blog Title
-            li
-              div icon
-              div Blog Title
-            div Featured on Meta
-            li
-              div icon
-              div Blog Title
-            li
-              div icon
-              div Blog Title
-            li
-              div icon
-              div Blog Title
-            div Hot Meta Post
-            li
-              div votes
-              div Post
-            li
-              div votes
-              div Post
+          div The Virusflow Blog
+            div icon
+            div Blog Title
+            div icon
+            div Blog Title
+          div Featured on Meta
+            div icon
+            div Blog Title
+            div icon
+            div Blog Title
+            div icon
+            div Blog Title
+          div Hot Meta Post
+            div votes
+            div Post
+            div votes
+            div Post
         div.div2
           div Custom Filters
           ul
