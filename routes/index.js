@@ -30,7 +30,6 @@ router.get("/", async (req, res, next) => {
     const questions = await db.Question.findAll({
       include: [User, db.Answer]
     })
-    // console.log(questions);
     res.render('questions', { questions });
   } catch (err) {
     next(err);
@@ -41,12 +40,13 @@ router.get("/questions-form", (req, res) => {
   res.render("questions-form");
 })
 
-
+router.get("/register", (req, res) => {
+  res.render("register");
+})
 
 router.get("/login", (req, res) => {
   res.render("login");
 })
-
 
 router.post('/logout', (req, res) => {
   delete req.session.auth;

@@ -8,7 +8,7 @@ const { User, Question } = db;
 
 
 router.get("/", (req, res) => {
-    res.render("voteTest");
+    res.render("questions-form");
 });
 
 
@@ -16,7 +16,7 @@ const questionNotFoundError = (id) => {
     const err = new Error(`Question with id of ${id} not found`)
     err.title = "Question not found"
     err.status = 404
-    return(err)
+    return (err)
 }
 
 
@@ -28,33 +28,33 @@ router.post("/", asyncHandler(async (req, res) => {
 
 
 
-router.post("/:id(\\d+)/vote", requireAuth, asyncHandler(async(req, res) => {
+router.post("/:id(\\d+)/vote", requireAuth, asyncHandler(async (req, res) => {
 
     const questionId = req.params.id;
-    const {isUpVote} = req.body
+    const { isUpVote } = req.body
     const userId = res.locals.user.id;
-    const existingVote = await QuestionVote.findOne({where:{questionId, userId}})
-    if(!existingVote){ //if the user hasnt voted on this question yet, create a new vote
-        const vote = await QuestionVote.create({questionId, userId, isUpVote});
+    const existingVote = await QuestionVote.findOne({ where: { questionId, userId } })
+    if (!existingVote) { //if the user hasnt voted on this question yet, create a new vote
+        const vote = await QuestionVote.create({ questionId, userId, isUpVote });
     }
-    else if(existingVote.isUpVote != isUpVote) { //change the vote
+    else if (existingVote.isUpVote != isUpVote) { //change the vote
         existingVote.isUpVote = isUpVote;
         await existingVote.save();
     } else { //delete the vote if they're clicking on the same button again
         await existingVote.destroy();
     }
-    return res.json({count: await voteSum(questionId)});
+    return res.json({ count: await voteSum(questionId) });
 }));
 
-async function voteSum(questionId){
-    let votes = await QuestionVote.findAll({where:{questionId}})
+async function voteSum(questionId) {
+    let votes = await QuestionVote.findAll({ where: { questionId } })
     votes = votes.map(vote => vote.toJSON())
-     return votes.reduce((acc, vote) => {
+    return votes.reduce((acc, vote) => {
         return acc + (vote.isUpVote ? 1 : -1);
     }, 0);
 }
-router.get("/:id(\\d+)/vote", asyncHandler(async(req, res) => {
-    res.json({count: await voteSum(req.params.id)})
+router.get("/:id(\\d+)/vote", asyncHandler(async (req, res) => {
+    res.json({ count: await voteSum(req.params.id) })
 }));
 
 
