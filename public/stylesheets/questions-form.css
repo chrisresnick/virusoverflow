@@ -1,4 +1,72 @@
-.container{
+
+
+.container {
+    display: flex;
+    border: solid red 2px;
+    width: 100%;
+}
+.topheader {
+    display: flex;
+    border: solid green 2px;
+    width: 100%;
+}
+
+.innergrid {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.formgrid {
+    display: flex;
+    width: 70%;
+    height: 586px;
+    border: purple solid 2px;
+    flex-direction: column;
+}
+.formtitle input{
+    display: flex;
+    width: 70%;
+    height: 32px;
+
+}
+.titleP{
+    font-size: small;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.bodyP{
+    font-size: small;
+    margin-top: 2px;
+}
+.formbody textarea{
+    display: flex;
+    width: 100%;
+    height: 210px;
+
+}
+.formtags input {
+    display: flex;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: 36px;
+
+}
+.tagsP{
+    font-size: small;
+    margin-top: 2px;
+}
+
+.tipsform {
+    display: flex;
+    width: 30%;
+    height: 586px;
+    border: teal solid 2px;
+    flex-direction: column;
+
+}
+
+
+/* .container{
     border: solid;
     display: grid;
     grid-template-rows: 1fr 9fr;
@@ -17,6 +85,7 @@
 
 .mgrid {
     display: grid;
+    border: solid red 1px;
     grid-area: main;
     grid-template-rows: auto;
     grid-template-columns: 7fr 3fr;
@@ -35,6 +104,10 @@
     "title"
     "body"
     "tags";
+    width: auto;
+    height: 10%;
+    align-items: start;
+
 }
 .mgform-title {
     display: block;
@@ -64,4 +137,4 @@
 .mgrid-sidebar-3{
     display: block;
     grid-area: helpfulLinks;
-}
+} */

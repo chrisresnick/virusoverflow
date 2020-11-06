@@ -3,34 +3,37 @@ extends layout.pug
 
 block content
     div.container
-        div.topheader Ask a Question
-            .virusform
-                form(action="/questions", method="post")
-                    div.mgrid
-                        div.mgrid-form
-                        label(for="title") Title
-                            p Be specific and imagine you're asking a question to another person
-                        input(name="title", type="text")
+        div
+            div.topheader Ask a Question
 
-                        label(for="body") Body
-                            p Include all the information someone would need to answer you question
-                        textarea(type="text" name="body")
-                        div
-                            label(for="body") Tags
-                                p Add up to 5 tags to describe what your question is about
+            div.innergrid
+                form(action="/questions", method="post")
+                    div.formgrid
+                        div.formtitle
+                            label(for="title") Title
+                                p.titleP Be specific and imagine you're asking a question to another person
+                            input(name="title", type="text")
+                        div.formbody
+                                label(for="body") Body
+                                    p.bodyP Include all the information someone would need to answer you question
+                                textarea(type="text" name="body")
+                        div.formtags
+                                    label(for="body") Tags
+                                        p.tagsP Add up to 5 tags to describe what your question is about
+                                        input(name="tags", type="text")
                     div
                         button(type="submit") Review Your Question
-                        div.mgrid-sidebar
-                            div.mgrid-sidebar-1 Step 1: Draft your question
-                            p The community is here to help you with specific coding, algorithm, or language problems.
-                            p Avoid asking opinion based questions
-                        ol
-                            li
-                                button(type="button") Summarize the problem
-                                button(type="button") Describe what you've tried
-                                button(type="button") Show some code
-                        div.mgrid-sidebar-2
-                            button(type="button") Have s non-programming question?
+                div.tipsform
+                    div.mgrid-sidebar-1 Step 1: Draft your question
+                    p The community is here to help you with specific coding, algorithm, or language problems.
+                    p Avoid asking opinion based questions
+                ol
+                    li
+                        button(type="button") Summarize the problem
+                        button(type="button") Describe what you've tried
+                        button(type="button") Show some code
+                div.mgrid-sidebar-2
+                    button(type="button") Have s non-programming question?
 
-                        div.mgrid-sidebar-3
-                            button(type="button") More helpful links
+                div.mgrid-sidebar-3
+                    button(type="button") More helpful links
