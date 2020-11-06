@@ -36,18 +36,18 @@ router.get("/", async (req, res, next) => {
 			include: [User, Answer],
 		});
 		//console.log(questions);
-		res.render("questions", { questions, logedIn: req.userLogedIn});
+		res.render("questions", { questions, logedIn: req.userLogedIn });
 	} catch (err) {
 		next(err);
 	}
-});
+})
 
 router.get("/questions-form", (req, res) => {
-	res.render("questions-form", {logedIn: req.userLogedIn});
+	res.render("questions-form", { logedIn: req.userLogedIn });
 });
 
 router.get("/login", (req, res) => {
-	res.render("login", {logedIn: req.userLogedIn});
+	res.render("login", { logedIn: req.userLogedIn });
 });
 
 router.post("/logout", (req, res) => {
@@ -76,7 +76,7 @@ router.post(
 			});
 		}
 		let { username, password } = req.body;
-		if(!username || !password){
+		if (!username || !password) {
 			username = req.query.username;
 			password = req.query.password;
 		}
@@ -110,7 +110,7 @@ router.post(
 		const searchTerm = req.body.searchTerm.trim();
 		if (searchTerm.length === 0) return res.redirect("/");
 		const words = sw.removeStopwords(searchTerm.split(" "));
-		if(words.length === 0) return res.redirect("/");
+		if (words.length === 0) return res.redirect("/");
 		const re = words.map((word) => `%${word}%`);
 		//console.log("re", re);
 		const results = {};
@@ -161,7 +161,7 @@ router.post(
 			});
 		}
 		const releventQuestions = Object.keys(results);
-		if (releventQuestions.length === 0) return res.render("noneFound", {logedIn: req.userLogedIn});
+		if (releventQuestions.length === 0) return res.render("noneFound", { logedIn: req.userLogedIn });
 		releventQuestions.sort((a, b) => {
 			const aVal = results[a].count;
 			const bVal = results[b].count;
@@ -169,7 +169,7 @@ router.post(
 			return aVal > bVal ? -1 : 1;
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
-		res.render("questions", { questions, logedIn: req.userLogedIn});
+		res.render("questions", { questions, logedIn: req.userLogedIn });
 	}),
 );
 
