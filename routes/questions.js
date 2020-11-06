@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/models");
 const answer = require("../db/models/answer");
-const { QuestionVote, Question } = require("../db/models/index");
+const { QuestionVote } = require("../db/models/index");
 const { asyncHandler, requireAuth } = require("./utils");
-const { User, Answer } = db;
+const { User, Question, Answer } = db;
 
 router.get("/", (req, res) => {
     res.redirect("/");

@@ -11,12 +11,6 @@ async function ansVoteSum(answerId) {
     }, 0);
 }
 
-// router.get("/:id(\\d+)", asyncHandler(
-//     async (req, res) => {
-//         res.render('answers')
-//     }
-// ))
-
 
 router.get("/:id(\\d+)/vote", asyncHandler(async (req, res) => {
     res.json({ count: await ansVoteSum(req.params.id) })
