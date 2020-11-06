@@ -7,7 +7,7 @@ const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question, Answer } = db;
 
 router.get("/", (req, res) => {
-    res.render("questions-form");
+    res.redirect("/");
 });
 
 const questionNotFoundError = (id) => {
