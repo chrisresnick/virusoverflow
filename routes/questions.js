@@ -21,9 +21,14 @@ const questionNotFoundError = (id) => {
 
 
 router.post("/", asyncHandler(async (req, res) => {
-    const { userId, textArea } = req.body;
-    const question = await Question.create({ userId, textArea })
-    res.status(200).json({ question })
+    const { title, body } = req.body;
+    const question = await Question.create({
+        userId: req.session.id,
+        title,
+        body,
+    })
+    console.log(question.toJSON)
+    // res.redirect("/:id").json({ question })
 }))
 
 
