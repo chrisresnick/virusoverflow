@@ -60,7 +60,10 @@ app.use(async (req, res, next) => {
 		next();
 	}
 });
-
+app.use((req, res, next) => {
+	req.userLogedIn = res.locals.authenticated ? true:false;
+	next();
+})
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/questions", questionsRouter);
@@ -84,7 +87,7 @@ app.use(function (err, req, res, next) {
 
 	// render the error page
 	res.status(err.status || 500);
-	res.render("error");
+	res.render("error", {logedIn: req.userLogedIn});
 });
 //app.listen(port, () => console.log(`Listening on ${port}`) )
 module.exports = app;
