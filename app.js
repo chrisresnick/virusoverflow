@@ -16,15 +16,15 @@ const { User } = require("./db/models/index");
 
 const app = express();
 const store = new SequelizeStore({
-	db: sequelize,
+	db: sequelize
 });
 app.use(
 	session({
 		name: "virusoverflow",
 		secret: "superSecret",
 		store,
-		resave: false,
-	}),
+		resave: false
+	})
 );
 store.sync();
 
