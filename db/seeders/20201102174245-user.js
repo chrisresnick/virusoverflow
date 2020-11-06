@@ -17,7 +17,14 @@ module.exports = {
         email: "test@test.com",
         createdAt: new Date(),
         updatedAt: new Date()
+      }, {
+        username: "demo",
+        password: await bcrypt.hash("supersecure", 10),
+        email: "givemeajob@yourcompany.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
+
     ], {});
 
   },
