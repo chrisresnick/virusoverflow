@@ -1,0 +1,84 @@
+.container {
+	display: grid;
+	padding: 5px;
+	margin: 3px;
+}
+
+.vote-button {
+	background-color: red;
+}
+
+.answer-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.post-answer {
+	margin-top: 3px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}
+
+.post-answer button {
+	margin-top: 3px;
+	display: inline-block;
+	max-width: 15%;
+	/* align-self: c; */
+}
+
+.answer-holder {
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	padding: 3px;
+	margin-top: 3px;
+	display: flex;
+	justify-content: space-between;
+	/* flex-direction: row-reverse; */
+}
+.vote-holder {
+	max-width: 25%;
+	margin: 3px;
+	text-align: center;
+}
+.answer-holder > div {
+	display: inline-block;
+}
+
+/* div {
+	border: 1px solid black;
+} */
+
+.question-text {
+	/* background-image: url(); */
+	display: flex;
+	flex-direction: column;
+	font-size: 18px;
+}
+.answer-text {
+	font-size: 18px;
+}
+
+.answer-text2 {
+	max-width: 25%;
+	font-size: 14px;
+}
+
+.vote-holder button {
+	width: 45px;
+	height: 45px;
+	/* background: rgba(0, 0, 0, 0); */
+}
+
+.up-vote-button {
+	cursor: pointer;
+	width: 45px;
+	height: 45px;
+	background-image: url("./icons/up-arrow.svg");
+}
+
+.down-vote-button {
+	cursor: pointer;
+	width: 45px;
+	height: 45px;
+	background-image: url("./icons/down-arrow.svg");
+}

@@ -7,7 +7,7 @@ const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question, Answer } = db;
 
 router.get("/", (req, res) => {
-	res.render("voteTest");
+	res.redirect("/");
 });
 
 const questionNotFoundError = (id) => {
@@ -17,15 +17,18 @@ const questionNotFoundError = (id) => {
 	return err;
 };
 
+// questions post route
+
 router.post(
 	"/",
 	asyncHandler(async (req, res) => {
 		const { userId, textArea } = req.body;
 		const question = await Question.create({ userId, textArea });
 		res.status(200).json({ question });
-	}),
+	})
 );
 
+// get route for all the questions
 router.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
@@ -35,20 +38,22 @@ router.get(
 
 		let answers = await db.Answer.findAll({
 			where: {
-				questionId: id,
+				questionId: id
 			},
 			include: [User],
+			order: ["createdAt"]
 		});
 		answers = answers.map((answer) => answer.toJSON());
 		// console.log(answers);
 
 		res.render("answers", {
 			question,
-			answers,
+			answers
 		});
-	}),
+	})
 );
 
+// post an answer route
 router.post(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
@@ -62,11 +67,13 @@ router.post(
 		const yourAnswer = await Answer.create({
 			textField: answer,
 			questionId,
-			userId,
+			userId
 		});
 		res.redirect(`/questions/${questionId}`);
-	}),
+	})
 );
+
+// vote route
 
 router.post(
 	"/:id(\\d+)/vote",
@@ -76,14 +83,14 @@ router.post(
 		const { isUpVote } = req.body;
 		const userId = res.locals.user.id;
 		const existingVote = await QuestionVote.findOne({
-			where: { questionId, userId },
+			where: { questionId, userId }
 		});
 		if (!existingVote) {
 			//if the user hasnt voted on this question yet, create a new vote
 			const vote = await QuestionVote.create({
 				questionId,
 				userId,
-				isUpVote,
+				isUpVote
 			});
 		} else if (existingVote.isUpVote != isUpVote) {
 			//change the vote
@@ -94,7 +101,7 @@ router.post(
 			await existingVote.destroy();
 		}
 		return res.json({ count: await voteSum(questionId) });
-	}),
+	})
 );
 
 async function voteSum(questionId) {
@@ -104,9 +111,11 @@ async function voteSum(questionId) {
 		return acc + (vote.isUpVote ? 1 : -1);
 	}, 0);
 }
-router.get("/:id(\\d+)/vote", asyncHandler(async(req, res) => {
-    res.json({count: await voteSum(req.params.id)})
-}));
-
+router.get(
+	"/:id(\\d+)/vote",
+	asyncHandler(async (req, res) => {
+		res.json({ count: await voteSum(req.params.id) });
+	})
+);
 
 module.exports = router;
