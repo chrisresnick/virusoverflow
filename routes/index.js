@@ -35,7 +35,7 @@ router.get("/", async (req, res, next) => {
 		const questions = await Question.findAll({
 			include: [User, Answer],
 		});
-		// console.log(questions);
+		//console.log(questions);
 		res.render("questions", { questions });
 	} catch (err) {
 		next(err);
@@ -103,7 +103,7 @@ router.post(
 		const searchTerm = req.body.searchTerm.trim();
 		if (searchTerm.length === 0) return res.redirect("/");
 		const words = sw.removeStopwords(searchTerm.split(" "));
-		//if(words.length === 0) return res.redirect("/");
+		if(words.length === 0) return res.redirect("/");
 		const re = words.map((word) => `%${word}%`);
 		console.log("re", re);
 		const results = {};
