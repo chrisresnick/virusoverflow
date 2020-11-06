@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 async function getVoteCount(counter) {
 	const [firstPart, id] = counter.id.split("For");
 	const pathName = firstPart.includes("answer") ? "answers" : "questions";
-	fetch(`http://localhost:8080/${pathName}/${id}/vote/`)
+	fetch(`/${pathName}/${id}/vote/`)
 		.then((res) => res.json())
 		.then((json) => (counter.innerHTML = json.count));
 }
@@ -21,7 +21,7 @@ async function vote(e) {
 	let [isUpVote, questionId] = clicked.split("For");
 	isUpVote = isUpVote === "upVote";
 	const res = await fetch(
-		`http://localhost:8080/questions/${questionId}/vote`,
+		`/questions/${questionId}/vote`,
 		{
 			method: "POST",
 			headers: {
@@ -39,7 +39,7 @@ async function answerVote(e) {
 	const clicked = e.target.id;
 	let [isUpVote, answerId] = clicked.split("For");
 	isUpVote = isUpVote === "upAnswerVote";
-	const res = await fetch(`http://localhost:8080/answers/${answerId}/vote`, {
+	const res = await fetch(`/answers/${answerId}/vote`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

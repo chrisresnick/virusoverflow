@@ -33,9 +33,10 @@ router.get(
 router.get("/", async (req, res, next) => {
 	try {
 		const questions = await Question.findAll({
-			include: [User, Answer]
-		})
-		res.render('questions', { questions });
+			include: [User, Answer],
+		});
+		//console.log(questions);
+		res.render("questions", { questions });
 	} catch (err) {
 		next(err);
 	}
@@ -106,12 +107,12 @@ router.post(
 		const searchTerm = req.body.searchTerm.trim();
 		if (searchTerm.length === 0) return res.redirect("/");
 		const words = sw.removeStopwords(searchTerm.split(" "));
-		//if(words.length === 0) return res.redirect("/");
+		if (words.length === 0) return res.redirect("/");
 		const re = words.map((word) => `%${word}%`);
-		console.log("re", re);
+		//console.log("re", re);
 		const results = {};
 		for (let term of re) {
-			console.log("term", term);
+			//console.log("term", term);
 			let questions = await Question.findAll({
 				where: {
 					[Op.or]: [
@@ -119,12 +120,12 @@ router.post(
 						{ title: { [Op.iLike]: term } },
 					],
 				},
-				include: User,
+				include: [User, Answer]
 			});
 			//console.log("questions:", questions);
 			let answers = await Answer.findAll({
 				where: { textField: { [Op.iLike]: term } },
-				include: { model: Question, include: User },
+				include: { model: Question, include: [User, Answer] },
 			});
 			//console.log("answers:", answers);
 			questions.forEach((question) => {
@@ -142,7 +143,7 @@ router.post(
 					);
 			});
 			answers.forEach((answer) => {
-				console.log("questionId", answer.questionId);
+				//console.log("questionId", answer.questionId);
 				if (!(answer.questionId in results)) {
 					//let thisQues = await Question.findByPk(answer.questionId, {include: User});
 					results[answer.questionId] = {

@@ -30,13 +30,14 @@ block content
                     div(id=`voteCountFor${question.id}` class="voteCount")
                     div.word votes
                   div.qb-grid2
-                    div 0
+                    div=`${question.Answers.length}`
                     //- div(id=`answerVoteCountFor${answer.id}` class="voteCount")
-                    div.word answer
+                    div.word answers
                   div.qb-grid3
                     div 0
                     div.word views
-                  a(href=`/${question.id}`).qb-grid4.questionLink= question.title
+                  div.qb-grid4.questionLink
+                    a(href=`/questions/${question.id}`)=question.title
                   div.qb-grid5.word tags
                   div.qb-grid6
                     div.word User

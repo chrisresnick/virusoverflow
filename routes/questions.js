@@ -7,7 +7,7 @@ const { asyncHandler, requireAuth } = require("./utils");
 const { User, Answer } = db;
 
 router.get("/", (req, res) => {
-    res.render("questions-form");
+    res.redirect("/");
 });
 
 const questionNotFoundError = (id) => {
@@ -41,18 +41,19 @@ router.get(
 
         let answers = await db.Answer.findAll({
             where: {
-                questionId: id,
+                questionId: id
             },
             include: [User],
+            order: ["createdAt"]
         });
         answers = answers.map((answer) => answer.toJSON());
         // console.log(answers);
 
         res.render("answers", {
             question,
-            answers,
+            answers
         });
-    }),
+    })
 );
 
 // post an answer route
@@ -69,10 +70,10 @@ router.post(
         const yourAnswer = await Answer.create({
             textField: answer,
             questionId,
-            userId,
+            userId
         });
         res.redirect(`/questions/${questionId}`);
-    }),
+    })
 );
 
 // vote route
@@ -85,14 +86,14 @@ router.post(
         const { isUpVote } = req.body;
         const userId = res.locals.user.id;
         const existingVote = await QuestionVote.findOne({
-            where: { questionId, userId },
+            where: { questionId, userId }
         });
         if (!existingVote) {
             //if the user hasnt voted on this question yet, create a new vote
             const vote = await QuestionVote.create({
                 questionId,
                 userId,
-                isUpVote,
+                isUpVote
             });
         } else if (existingVote.isUpVote != isUpVote) {
             //change the vote
@@ -103,7 +104,7 @@ router.post(
             await existingVote.destroy();
         }
         return res.json({ count: await voteSum(questionId) });
-    }),
+    })
 );
 
 async function voteSum(questionId) {
@@ -113,9 +114,11 @@ async function voteSum(questionId) {
         return acc + (vote.isUpVote ? 1 : -1);
     }, 0);
 }
-router.get("/:id(\\d+)/vote", asyncHandler(async (req, res) => {
-    res.json({ count: await voteSum(req.params.id) })
-}));
-
+router.get(
+    "/:id(\\d+)/vote",
+    asyncHandler(async (req, res) => {
+        res.json({ count: await voteSum(req.params.id) });
+    })
+);
 
 module.exports = router;
