@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/models");
 const answer = require("../db/models/answer");
-const { QuestionVote } = require("../db/models/index");
+const { QuestionVote, Question } = require("../db/models/index");
 const { asyncHandler, requireAuth } = require("./utils");
-const { User, Question, Answer } = db;
+const { User, Answer } = db;
 
 router.get("/", (req, res) => {
     res.render("questions-form");
@@ -20,14 +20,15 @@ const questionNotFoundError = (id) => {
 // questions post route
 
 router.post("/", asyncHandler(async (req, res) => {
-    const { title, body } = req.body;
+    const { title, textArea } = req.body;
+    const userId = res.locals.user.id;
     const question = await Question.create({
-        userId: req.session.id,
+        userId,
         title,
-        body,
+        textArea
     })
     console.log(question.toJSON)
-    // res.redirect("/:id").json({ question })
+    res.redirect(`/questions/${question.id}`).json({ question })
 }))
 
 // get route for all the questions

@@ -2,6 +2,7 @@ extends layout.pug
 
 
 block content
+  script(type="javascript" src="/questions.js")
   div.questions
     div.nav-grid-area
       +navBar
@@ -16,11 +17,11 @@ block content
         div.center-grid-2
           div
           div.links-grid
-            a(href="").linkborder Interesting
-            a(href="").linkborder Bountied
-            a(href="").linkborder Hot
-            a(href="").linkborder Week
-            a(href="").linkborder Month
+            a.linkborder Interesting
+            a.linkborder Bountied
+            a.linkborder Hot
+            a.linkborder Week
+            a.linkborder Month
         div.center-grid-3
           div
               each question in questions
@@ -35,7 +36,7 @@ block content
                   div.qb-grid3
                     div 0
                     div.word views
-                  div.qb-grid4.questionLink= question.title
+                  a(href=`/${question.id}`).qb-grid4.questionLink= question.title
                   div.qb-grid5.word tags
                   div.qb-grid6
                     div.word User
@@ -43,7 +44,7 @@ block content
                     div.word modified
                       span.word= question.updatedAt.toDateString()
         br
-        h2.center-grid-4 Looking for more? Browse the <a href="/questions">complete list of questions</a>, or <a href="/tags">popular tags</a>. Help us answer <a href="/unanswered">unanswered questions</a>.
+        h2.center-grid-4 Looking for more? Browse the <a href="/">complete list of questions</a>, or <a>popular tags</a>. Help us answer <a>unanswered questions</a>.
       div.mgrid-2
         div.div1
           div The Virusflow Blog
