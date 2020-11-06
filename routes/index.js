@@ -2,12 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { asyncHandler } = require("./utils");
-<<<<<<< HEAD
-const { User } = require("../db/models/index");
-const db = require("../db/models")
-=======
 const { User, Question, Answer } = require("../db/models/index");
->>>>>>> master
 
 const bcrypt = require("bcryptjs");
 const session = require('express-session');
@@ -33,13 +28,8 @@ router.get("/test", requireAuth, asyncHandler(async (req, res) => {
 
 router.get("/", async (req, res, next) => {
   try {
-<<<<<<< HEAD
-    const questions = await db.Question.findAll({
-      include: [User, db.Answer]
-=======
     const questions = await Question.findAll({
       include: [User, Answer]
->>>>>>> master
     })
     // console.log(questions);
     res.render('questions', { questions });
@@ -94,8 +84,6 @@ router.post('/login', loginValidator, asyncHandler(async (req, res) => {
   }
   else {
     return res.render("login", { errors: ["Username and Password Combination not valid"] })
-<<<<<<< HEAD
-=======
   }
 }));
 
@@ -132,7 +120,6 @@ router.post("/search", asyncHandler(async (req, res) => {
         };
         results[answer.questionId].count += countOccur(answer.textFeild, term.substring(1, term.length-1));;
     });
->>>>>>> master
   }
   const releventQuestions = Object.keys(results);
   if(releventQuestions.length === 0) return res.render("noneFound");

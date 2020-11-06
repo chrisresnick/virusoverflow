@@ -1,4 +1,5 @@
-.class{
+.container{
+    border: solid;
     display: grid;
     grid-template-rows: 1fr 9fr;
     grid-template-columns: auto ;
@@ -6,24 +7,26 @@
     "header"
     "main";
 }
-.header {
-    
+.topheader {
+
     display: grid;
     grid-area: header;
     grid-template-columns: auto;
     grid-template-rows: auto;
 }
 
-.qmgrid {
+.mgrid {
     display: grid;
     grid-area: main;
     grid-template-rows: auto;
     grid-template-columns: 7fr 3fr;
     grid-area:
-    "askForm" "tips";
+    "askForm" "tips"
+    "askForm" "otherQuestions"
+    "askForm" "helpfulLinks";
 }
 
-.mgrid-1{
+.mgrid-form{
     display: grid;
     grid-area: askForm;
     grid-template-columns: auto;
@@ -33,15 +36,32 @@
     "body"
     "tags";
 }
-.mgrid-2 {
+.mgform-title {
+    display: block;
+}
+
+.mgrid-sidebar {
     display: grid;
     grid-area: tips;
-    grid-template-rows: 1fr 6fr 1fr 1fr;
+    grid-template-rows: 4fr 1fr 1fr;
     grid-template-columns: auto;
     grid-area:
-    "sidebarHeader"
     "sidebarContent"
     "non-programming-questions"
-    "helpfulLInks";
+    "helpfulLinks";
 
+}
+
+
+.mgrid-sidebar-1 {
+    display: block;
+    grid-area: sidebarContent;
+}
+.mgrid-sidebar-2{
+    display: block;
+    grid-area: non-programming-questions;
+}
+.mgrid-sidebar-3{
+    display: block;
+    grid-area: helpfulLinks;
 }
