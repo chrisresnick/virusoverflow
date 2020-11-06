@@ -75,7 +75,11 @@ router.post(
 				logedIn: req.userLogedIn
 			});
 		}
-		const { username, password } = req.body;
+		let { username, password } = req.body;
+		if(!username || !password){
+			username = req.query.username;
+			password = req.query.password;
+		}
 		const user = await User.findOne({ where: { username } });
 		if (!user) {
 			return res.render("login", {

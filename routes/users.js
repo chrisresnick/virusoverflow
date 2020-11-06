@@ -14,6 +14,11 @@ router.get("/register", (req, res) =>{
   res.render("register", {logedIn: req.userLogedIn});
 })
 
+router.post("/demo/", (req,res) => {
+  res.header("Content-Type", "application/x-www-form-urlencoded");
+  res.redirect(res.redirect(307, `/login?username=demo&password=supersecure`));
+});
+
 const registerValid = [
   check("email")
     .exists({ checkFalsy: true })
