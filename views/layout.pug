@@ -51,12 +51,17 @@ html
           form(action="/search", method="post", id="search")
               div
                 input(type="text", name="searchTerm")
-        div.tbgrid-6
-          form(action="/login")
-            button.button Log In
-        div.tbgrid-7
-          form(action="/users/register")
-            button Sign Up
+        if logedIn
+          div.tbgrid-6
+            form(action="/logout", method="post")
+              button.button Log Out
+        else
+          div.tbgrid-6
+            form(action="/login")
+              button.button Log In
+          div.tbgrid-7
+            form(action="/users/register")
+              button Sign Up
 
     div.grid-area-2
       block content

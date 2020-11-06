@@ -36,22 +36,18 @@ router.get("/", async (req, res, next) => {
 			include: [User, Answer],
 		});
 		//console.log(questions);
-		res.render("questions", { questions });
+		res.render("questions", { questions, logedIn: req.userLogedIn });
 	} catch (err) {
 		next(err);
 	}
 })
 
 router.get("/questions-form", (req, res) => {
-	res.render("questions-form");
-})
-
-router.get("/register", (req, res) => {
-	res.render("register");
-})
+	res.render("questions-form", { logedIn: req.userLogedIn });
+});
 
 router.get("/login", (req, res) => {
-	res.render("login");
+	res.render("login", { logedIn: req.userLogedIn });
 });
 
 router.post("/logout", (req, res) => {
@@ -76,13 +72,19 @@ router.post(
 		if (!validationErrors.isEmpty()) {
 			return res.render("login", {
 				errors: validationErrors.errors.map((err) => err.msg),
+				logedIn: req.userLogedIn
 			});
 		}
-		const { username, password } = req.body;
+		let { username, password } = req.body;
+		if (!username || !password) {
+			username = req.query.username;
+			password = req.query.password;
+		}
 		const user = await User.findOne({ where: { username } });
 		if (!user) {
 			return res.render("login", {
 				errors: ["Username and Password Combination not valid"],
+				logedIn: req.userLogedIn
 			});
 		}
 		if (await bcrypt.compare(password, user.password.toString())) {
@@ -96,6 +98,7 @@ router.post(
 		} else {
 			return res.render("login", {
 				errors: ["Username and Password Combination not valid"],
+				logedIn: req.userLogedIn
 			});
 		}
 	}),
@@ -158,7 +161,7 @@ router.post(
 			});
 		}
 		const releventQuestions = Object.keys(results);
-		if (releventQuestions.length === 0) return res.render("noneFound");
+		if (releventQuestions.length === 0) return res.render("noneFound", { logedIn: req.userLogedIn });
 		releventQuestions.sort((a, b) => {
 			const aVal = results[a].count;
 			const bVal = results[b].count;
@@ -166,7 +169,7 @@ router.post(
 			return aVal > bVal ? -1 : 1;
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
-		res.render("questions", { questions });
+		res.render("questions", { questions, logedIn: req.userLogedIn });
 	}),
 );
 

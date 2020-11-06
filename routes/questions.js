@@ -51,7 +51,8 @@ router.get(
 
         res.render("answers", {
             question,
-            answers
+            answers,
+            logedIn: req.userLogedIn
         });
     })
 );
