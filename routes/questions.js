@@ -6,6 +6,8 @@ const { QuestionVote } = require("../db/models/index");
 const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question, Answer } = db;
 
+const methodOverride = require("method-override");
+
 router.get("/", (req, res) => {
 	res.redirect("/");
 });
@@ -34,22 +36,20 @@ router.get(
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		const question = await db.Question.findByPk(id, { include: [User] });
-		// console.log(question);
-
 		let answers = await db.Answer.findAll({
 			where: {
-				questionId: id
+				questionId: id,
 			},
 			include: [User],
-			order: ["createdAt"]
+			order: ["createdAt"],
 		});
 		answers = answers.map((answer) => answer.toJSON());
-		// console.log(answers);
 
 		res.render("answers", {
+			userId: res.locals.user.id,
 			question,
 			answers,
-			logedIn: req.userLogedIn
+			logedIn: req.userLogedIn,
 		});
 	})
 );
@@ -65,17 +65,16 @@ router.post(
 		// console.log(answer);
 		const questionId = parseInt(req.params.id, 10);
 
-		const yourAnswer = await Answer.create({
+		await Answer.create({
 			textField: answer,
 			questionId,
-			userId
+			userId,
 		});
 		res.redirect(`/questions/${questionId}`);
 	})
 );
 
 // vote route
-
 router.post(
 	"/:id(\\d+)/vote",
 	requireAuth,
@@ -84,14 +83,14 @@ router.post(
 		const { isUpVote } = req.body;
 		const userId = res.locals.user.id;
 		const existingVote = await QuestionVote.findOne({
-			where: { questionId, userId }
+			where: { questionId, userId },
 		});
 		if (!existingVote) {
 			//if the user hasnt voted on this question yet, create a new vote
 			const vote = await QuestionVote.create({
 				questionId,
 				userId,
-				isUpVote
+				isUpVote,
 			});
 		} else if (existingVote.isUpVote != isUpVote) {
 			//change the vote

@@ -11,29 +11,30 @@ block content
             .vote-holder
                 div(id=`upVoteFor${question.id}` class="up-vote-button")
                 div(id=`voteCountFor${question.id}` class="voteCount")
-                div
-                    div(id=`downVoteFor${question.id}` class="down-vote-button" class="down-vote-button")
+                div(id=`downVoteFor${question.id}` class="down-vote-button" class="down-vote-button")
             .question-text
                 a(href=`/questions/${question.id}`)
                 p= question.textArea
             .answer-text2
                 p Asked by #{question.User.username} #{question.createdAt} ago
 
-        
         h2 Answers:
         div.answer-container
             each answer in answers
                 .answer-holder
                     .vote-holder
-                        div
-                            div(id=`upAnswerVoteFor${answer.id}` class="up-vote-button")
-                            div(id=`answerVoteCountFor${answer.id}`  class="voteCount") Vote Count
-                            div
-                                div(id=`downAnswerVoteFor${answer.id}` class="down-vote-button")
+                        div(id=`upAnswerVoteFor${answer.id}` class="up-vote-button")
+                        div(id=`answerVoteCountFor${answer.id}`  class="voteCount") Vote Count
+                        div(id=`downAnswerVoteFor${answer.id}` class="down-vote-button")
 
                     .answer-text: p= answer.textField
                     .answer-text2
-                        p Answered by #{answer.User.username} #{answer.createdAt} ago
+                        p Answered by #{answer.User.username} #{answer.updatedAt} ago
+                        if userId === answer.userId
+                            .cruds
+                                button: a(href=`/answers/${answer.id}/edit`) Edit
+                                form(action=`/answers/${answer.id}?_method=DELETE` method="POST")
+                                    button(type="submit" id="deleteBtn" class="dltBtn") Delete
         form(action=`/questions/${question.id}` method="post")
             div.post-answer
                 h2 Your Answer:
