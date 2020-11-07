@@ -40,9 +40,9 @@ router.get("/", async (req, res, next) => {
 	} catch (err) {
 		next(err);
 	}
-})
+});
 
-router.get("/questions-form", (req, res) => {
+router.get("/questions-form", requireAuth, (req, res) => {
 	res.render("questions-form", { logedIn: req.userLogedIn });
 });
 
