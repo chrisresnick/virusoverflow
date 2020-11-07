@@ -27,7 +27,7 @@ router.get(
 	requireAuth,
 	asyncHandler(async (req, res) => {
 		res.send(res.locals.user.username);
-	}),
+	})
 );
 
 router.get("/", async (req, res, next) => {
@@ -52,7 +52,7 @@ router.get("/login", (req, res) => {
 
 router.post("/logout", (req, res) => {
 	delete req.session.auth;
-	res.redirect(req.header("Referer"));
+	res.redirect("/");
 });
 
 const loginValidator = [
@@ -72,7 +72,7 @@ router.post(
 		if (!validationErrors.isEmpty()) {
 			return res.render("login", {
 				errors: validationErrors.errors.map((err) => err.msg),
-				logedIn: req.userLogedIn
+				logedIn: req.userLogedIn,
 			});
 		}
 		let { username, password } = req.body;
@@ -84,7 +84,7 @@ router.post(
 		if (!user) {
 			return res.render("login", {
 				errors: ["Username and Password Combination not valid"],
-				logedIn: req.userLogedIn
+				logedIn: req.userLogedIn,
 			});
 		}
 		if (await bcrypt.compare(password, user.password.toString())) {
@@ -98,10 +98,10 @@ router.post(
 		} else {
 			return res.render("login", {
 				errors: ["Username and Password Combination not valid"],
-				logedIn: req.userLogedIn
+				logedIn: req.userLogedIn,
 			});
 		}
-	}),
+	})
 );
 
 router.post(
@@ -123,7 +123,7 @@ router.post(
 						{ title: { [Op.iLike]: term } },
 					],
 				},
-				include: [User, Answer]
+				include: [User, Answer],
 			});
 			//console.log("questions:", questions);
 			let answers = await Answer.findAll({
@@ -136,13 +136,13 @@ router.post(
 					results[question.id] = { count: 0, question };
 				results[question.id].count += countOccur(
 					question.textArea,
-					term.substring(1, term.length - 1),
+					term.substring(1, term.length - 1)
 				);
 				results[question.id].count +=
 					2 *
 					countOccur(
 						question.title,
-						term.substring(1, term.length - 1),
+						term.substring(1, term.length - 1)
 					);
 			});
 			answers.forEach((answer) => {
@@ -156,12 +156,15 @@ router.post(
 				}
 				results[answer.questionId].count += countOccur(
 					answer.textField,
-					term.substring(1, term.length - 1),
+					term.substring(1, term.length - 1)
 				);
 			});
 		}
 		const releventQuestions = Object.keys(results);
-		if (releventQuestions.length === 0) return res.render("noneFound", { logedIn: req.userLogedIn });
+
+		if (releventQuestions.length === 0)
+			return res.render("noneFound", { logedIn: req.userLogedIn });
+
 		releventQuestions.sort((a, b) => {
 			const aVal = results[a].count;
 			const bVal = results[b].count;
@@ -170,7 +173,7 @@ router.post(
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
 		res.render("questions", { questions, logedIn: req.userLogedIn });
-	}),
+	})
 );
 
 function countOccur(str, subString) {
