@@ -40,7 +40,7 @@ router.get("/", async (req, res, next) => {
 	} catch (err) {
 		next(err);
 	}
-});
+})
 
 router.get("/questions-form", (req, res) => {
 	res.render("questions-form", { logedIn: req.userLogedIn });
@@ -75,7 +75,11 @@ router.post(
 				logedIn: req.userLogedIn,
 			});
 		}
-		const { username, password } = req.body;
+		let { username, password } = req.body;
+		if (!username || !password) {
+			username = req.query.username;
+			password = req.query.password;
+		}
 		const user = await User.findOne({ where: { username } });
 		if (!user) {
 			return res.render("login", {
@@ -157,8 +161,10 @@ router.post(
 			});
 		}
 		const releventQuestions = Object.keys(results);
+
 		if (releventQuestions.length === 0)
 			return res.render("noneFound", { logedIn: req.userLogedIn });
+
 		releventQuestions.sort((a, b) => {
 			const aVal = results[a].count;
 			const bVal = results[b].count;

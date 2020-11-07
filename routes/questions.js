@@ -9,29 +9,33 @@ const { User, Question, Answer } = db;
 const methodOverride = require("method-override");
 
 router.get("/", (req, res) => {
-	res.redirect("/");
+    res.redirect("/");
 });
 
 const questionNotFoundError = (id) => {
-	const err = new Error(`Question with id of ${id} not found`);
-	err.title = "Question not found";
-	err.status = 404;
-	return err;
+    const err = new Error(`Question with id of ${id} not found`);
+    err.title = "Question not found";
+    err.status = 404;
+    return err;
 };
 
 // questions post route
 
-router.post(
-	"/",
-	asyncHandler(async (req, res) => {
-		const { userId, textArea } = req.body;
-		const question = await Question.create({ userId, textArea });
-		res.status(200).json({ question });
-	})
-);
+router.post("/", asyncHandler(async (req, res) => {
+    const { title, textArea } = req.body;
+    const userId = res.locals.user.id;
+    const question = await Question.create({
+        userId,
+        title,
+        textArea
+    })
+    console.log(question.toJSON)
+    res.redirect(`/questions/${question.id}`).json({ question })
+}))
 
 // get route for all the questions
 router.get(
+
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
@@ -52,18 +56,20 @@ router.get(
 			logedIn: req.userLogedIn,
 		});
 	})
+
 );
 
 // post an answer route
 router.post(
-	"/:id(\\d+)",
-	asyncHandler(async (req, res) => {
-		// console.log("body======", req.body);
-		const { answer } = req.body;
-		const userId = res.locals.user.id;
-		// console.log(`UserId:`, userId);
-		// console.log(answer);
-		const questionId = parseInt(req.params.id, 10);
+    "/:id(\\d+)",
+    asyncHandler(async (req, res) => {
+        // console.log("body======", req.body);
+        const { answer } = req.body;
+        const userId = res.locals.user.id;
+        // console.log(`UserId:`, userId);
+        // console.log(answer);
+        const questionId = parseInt(req.params.id, 10);
+
 
 		await Answer.create({
 			textField: answer,
@@ -72,10 +78,12 @@ router.post(
 		});
 		res.redirect(`/questions/${questionId}`);
 	})
+
 );
 
 // vote route
 router.post(
+
 	"/:id(\\d+)/vote",
 	requireAuth,
 	asyncHandler(async (req, res) => {
@@ -102,20 +110,21 @@ router.post(
 		}
 		return res.json({ count: await voteSum(questionId) });
 	})
+
 );
 
 async function voteSum(questionId) {
-	let votes = await QuestionVote.findAll({ where: { questionId } });
-	votes = votes.map((vote) => vote.toJSON());
-	return votes.reduce((acc, vote) => {
-		return acc + (vote.isUpVote ? 1 : -1);
-	}, 0);
+    let votes = await QuestionVote.findAll({ where: { questionId } });
+    votes = votes.map((vote) => vote.toJSON());
+    return votes.reduce((acc, vote) => {
+        return acc + (vote.isUpVote ? 1 : -1);
+    }, 0);
 }
 router.get(
-	"/:id(\\d+)/vote",
-	asyncHandler(async (req, res) => {
-		res.json({ count: await voteSum(req.params.id) });
-	})
+    "/:id(\\d+)/vote",
+    asyncHandler(async (req, res) => {
+        res.json({ count: await voteSum(req.params.id) });
+    })
 );
 
 module.exports = router;
