@@ -32,10 +32,10 @@ router.get(
 
 router.get("/", async (req, res, next) => {
 	try {
-		const questions = await Question.findAll({
+		let questions = await Question.findAll({
 			include: [User, Answer],
 		});
-		//console.log(questions);
+		questions = questions.map(question => question.toJSON())
 		res.render("questions", { questions, logedIn: req.userLogedIn });
 	} catch (err) {
 		next(err);

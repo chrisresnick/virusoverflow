@@ -37,7 +37,13 @@ block content
                     div.word views
                   div.qb-grid4.questionLink
                     a(href=`/questions/${question.id}`)=question.title
-                  div.qb-grid5.word tags
+                  div.qb-grid5.word
+                    if(errors)
+                      each error in errors
+                        .error
+                          h2=error
+                    a(href=`/questions/questions-form/${question.id}`) edit
+                    a(href="/") delete
                   div.qb-grid6
                     div.word User
                       span.word= question.User.username
