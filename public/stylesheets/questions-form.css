@@ -1,0 +1,269 @@
+
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.topheader {
+    display: flex;
+    width: 100%;
+    font-size: 27px;
+    padding: 20px;
+
+}
+
+.innergrid {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    /* flex-direction: column; */
+}
+
+.formgrid {
+    display: flex;
+    box-shadow: 1px 1px 5px grey;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    height: px;
+
+}
+.formtitle {
+    padding: 15px;
+    font-size: 15px;
+    font-weight:bold;
+}
+.formtitle input {
+    display: flex;
+    width: 100%;
+    height: 32px;
+    padding: 2px;
+
+
+}
+.titleP{
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight:none;
+
+}
+.formbody {
+    padding: 15px;
+    font-size: 15px;
+    font-weight:bold;
+}
+.bodyP{
+    font-size: 15px;
+    margin-top: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+}
+.formbody textarea{
+    display: flex;
+    width: 100%;
+    height: 210px;
+    margin-top: auto;
+
+}
+#review {
+    margin-top: 5px;
+}
+.formtags {
+    padding: 15px;
+    font-size: 15px;
+    font-weight:bold;
+}
+.formtags input {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: 36px;
+
+}
+.tagsP{
+    font-size: 15px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.tipsform {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    width: 30%;
+    height: 350px;
+    box-shadow: 1px 1px 5px rgb(228, 220, 220);
+    flex-direction: column;
+}
+.h3 {
+    padding: 10px;
+}
+
+
+.step1 {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.ptip1{
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+.ptip2{
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+div.pbottom {
+    border-bottom: solid grey 1px;
+}
+ ol li {
+     list-style-type: decimal;
+ }
+
+ .collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+ }
+
+ .tcontent {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+ }
+ .tbutton {
+    background-color:white;
+    color: #444;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+
+  }
+  .active, .collapsible:hover {
+    background-color: #ccc;
+  }
+
+
+ /* #dropdownholder {
+     margin-left: 25px;
+    }
+    #dropdownholder > li {
+        border: 1px solid grey;
+    }
+
+    #dropdown {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+        position: relative;
+        display: inline-block;
+
+    }
+    #dropdown li{
+        list-style-type: disc;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
+    } */
+/* .container{
+    border: solid;
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    grid-template-columns: auto ;
+    grid-area:
+    "header"
+    "main";
+}
+.topheader {
+
+    display: grid;
+    grid-area: header;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+.mgrid {
+    display: grid;
+    border: solid red 1px;
+    grid-area: main;
+    grid-template-rows: auto;
+    grid-template-columns: 7fr 3fr;
+    grid-area:
+    "askForm" "tips"
+    "askForm" "otherQuestions"
+    "askForm" "helpfulLinks";
+}
+
+.mgrid-form{
+    display: grid;
+    grid-area: askForm;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-area:
+    "title"
+    "body"
+    "tags";
+    width: auto;
+    height: 10%;
+    align-items: start;
+
+}
+.mgform-title {
+    display: block;
+}
+
+.mgrid-sidebar {
+    display: grid;
+    grid-area: tips;
+    grid-template-rows: 4fr 1fr 1fr;
+    grid-template-columns: auto;
+    grid-area:
+    "sidebarContent"
+    "non-programming-questions"
+    "helpfulLinks";
+
+}
+
+
+.mgrid-sidebar-1 {
+    display: block;
+    grid-area: sidebarContent;
+}
+.mgrid-sidebar-2{
+    display: block;
+    grid-area: non-programming-questions;
+}
+.mgrid-sidebar-3{
+    display: block;
+    grid-area: helpfulLinks;
+} */

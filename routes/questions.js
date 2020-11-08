@@ -5,7 +5,6 @@ const answer = require("../db/models/answer");
 const { QuestionVote } = require("../db/models/index");
 const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question, Answer } = db;
-
 const methodOverride = require("method-override");
 
 router.get("/", (req, res) => {
@@ -18,6 +17,7 @@ const questionNotFoundError = (id) => {
 	err.status = 404;
 	return err;
 };
+
 
 // questions post route
 
@@ -114,6 +114,7 @@ router.post(
 		return res.json({ count: await voteSum(questionId) });
 	})
 );
+
 
 async function voteSum(questionId) {
 	let votes = await QuestionVote.findAll({ where: { questionId } });

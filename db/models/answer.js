@@ -10,11 +10,13 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			Answer.belongsTo(models.Question, { foreignKey: "questionId" });
 			Answer.belongsTo(models.User, { foreignKey: "userId" });
+
 			Answer.hasMany(models.AnswerVotes, {
 				foreignKey: "answerId",
 				onDelete: "CASCADE",
 				hooks: true,
 			});
+
 			// define association here
 		}
 	}
@@ -36,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: "Answer",
-		}
+		},
 	);
 	return Answer;
 };

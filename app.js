@@ -44,10 +44,8 @@ app.use(async (req, res, next) => {
 
 	if (req.session.auth) {
 		const { userId } = req.session.auth;
-
 		try {
 			const user = await User.findByPk(userId);
-
 			if (user) {
 				res.locals.authenticated = true;
 				res.locals.user = user;
