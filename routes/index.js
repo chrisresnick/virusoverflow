@@ -10,17 +10,6 @@ const sw = require("stopword");
 const Op = require("sequelize").Op;
 const { check, validationResult } = require("express-validator");
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'a/A Express Skeleton Home' });
-// });
-
-// async function requireAuth(req, res, next) {
-// 	if (!res.locals.authenticated) {
-// 		return res.redirect("/login");
-// 	}
-// 	return next();
-// }
 
 router.get(
 	"/test",

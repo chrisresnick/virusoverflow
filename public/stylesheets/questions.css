@@ -29,7 +29,6 @@
 .mgrid-1 {
     grid-area: center;
     display: grid;
-    /* border: 2px solid blue; */
     padding-right: 12px;
     margin-top: 10px;
     grid-template-columns: 100%;
@@ -73,7 +72,6 @@
 
 .center-grid-3 {
     grid-area: questionList;
-    border: 2px solid blue;
     margin-top: 50px;
     height: auto;
 }
