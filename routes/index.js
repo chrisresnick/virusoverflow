@@ -40,10 +40,11 @@ router.get("/", async (req, res, next) => {
 	} catch (err) {
 		next(err);
 	}
-})
+});
 
 router.get("/questions-form", (req, res) => {
 	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
+
 });
 
 router.get("/login", (req, res) => {

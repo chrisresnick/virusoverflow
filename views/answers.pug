@@ -41,5 +41,5 @@ block content
         form(action=`/questions/${question.id}` method="post")
             div.post-answer
                 h2 Your Answer:
-                textarea(name="answer", cols="40", rows="5")
+                textarea(name="answer", cols="40", rows="5" required)
                 button(type="submit") Post Your Answer
