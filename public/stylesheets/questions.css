@@ -1,7 +1,7 @@
 .questions{
     display: grid;
     width: 1264px;
-    height: 750px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     grid-template-columns: 1fr 7fr;
@@ -57,11 +57,13 @@
     border: 1px solid gray;
     font-size: 13px;
     padding: 10px 15px;
+    box-shadow: 2px 2px 5px gray;
 }
 
 .center-grid-3 {
     grid-area: questionList;
     padding-top: 20px;
+    height: auto;
 }
 
 .classname{
@@ -70,11 +72,12 @@
     padding-bottom: 10px;
     background-color: #479c0e65;
     color: rgb(122, 122, 122);
-    grid-template-columns: 1fr 1fr 1fr 3.5fr 3.5fr;
+    box-shadow: 2px 2px 5px #2e610c;
+    grid-template-columns: 1fr 1fr 3.5fr 3.5fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-    "votes answer views question question"
-    "votes answer views tags user";
+    "votes answer question question"
+    "votes answer tags user";
     border-bottom: .5px solid lightgray;
 }
 
@@ -98,13 +101,6 @@
 
 .qb-grid2{
     grid-area: answer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.qb-grid3{
-    grid-area: views;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,45 +144,42 @@
     grid-template-areas:
         "div1"
         "div2"
-        "div3"
-        "div4"
-        "div5"
-        "div6"
-        "div7";
+        "div3";
 }
 
 .div1{
     grid-area: div1;
-    border: 2px solid #2e610c;
+    border: 1px solid #2e610c;
+    padding: 10px;
+    box-shadow: 2px 2px 5px gray;
 }
-
 
 
 .div2{
     grid-area: div2;
-    border: 2px solid #2e610c;
+    border: 1px solid #2e610c;
+    padding: 10px;
+    box-shadow: 2px 2px 5px gray;
 }
 .div3{
     grid-area: div3;
-    border: 2px solid #2e610c;
-}
-.div4{
-    grid-area: div4;
-    border: 2px solid #2e610c;
-}
-.div5{
-    grid-area: div5;
-    border: 2px solid #2e610c;
-}
-.div6{
-    grid-area: div6;
-    border: 2px solid #2e610c;
-}
-.div7{
-    grid-area: div7;
-    border: 2px solid #2e610c;
+    border: 1px solid #2e610c;
+    padding: 10px;
+    box-shadow: 2px 2px 5px gray;
 }
 
+.headTitle {
+    font-weight: bold;
+}
+
+.someSpace {
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 2px 2px 5px #2e610c;
+    height: 17px;
+    background-color:#479c0e65;
+    color: black;
+}
 
 /* ======================================================================================================== */
 h2 a {

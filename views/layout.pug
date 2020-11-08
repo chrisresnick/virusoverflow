@@ -3,21 +3,21 @@ mixin navBar
     nav
       ol
         li
-          a(href="").home HOME
+          a(href="/").home HOME
         li
           ul
             li PUBLIC
             li
-              a(href="") Virus Overflow
+              a(href="/") Virus Overflow
             li
-              a(href="") Tags
+              a Tags
             li
-              a(href="") Users
+              a Users
             li FIND A JOB
             li
-              a(href="") Jobs
+              a Jobs
             li
-              a(href="") Companies
+              a Companies
         li
           ol
             li.nav-base
@@ -43,7 +43,7 @@ html
     header.grid-area-1
       div.top-bar
         div.tbgrid-1
-          a(href="") Icon
+          a(href="/") Icon
         ol
           li.tbgrid-2 About
             a(href="")
@@ -53,12 +53,17 @@ html
           form(action="/search", method="post", id="search")
               div
                 input(type="text", name="searchTerm")
-        div.tbgrid-6
-          form(action="/login")
-            button.button Log In
-        div.tbgrid-7
-          form(action="/register")
-            button Sign Up
+        if logedIn
+          div.tbgrid-6
+            form(action="/logout", method="post")
+              button.button Log Out
+        else
+          div.tbgrid-6
+            form(action="/login")
+              button.button Log In
+          div.tbgrid-7
+            form(action="/users/register")
+              button Sign Up
 
     div.grid-area-2
       block content
@@ -66,68 +71,45 @@ html
     footer.grid-area-3
       div.bottom-bar
         div.bbgrid-1
-          h1 icon
+          a(href="/") icon
         nav.naving
           div.bbgrid-2
-            h5
-              a(href="") VIRUS OVERFLOW
+            h5 VIRUS OVERFLOW
             ul
-              li
-                a(href="") Questions
-              li
-                a(href="") Jobs
-              li
-                a(href="") Developer Jobs Directory
-              li
-                a(href="") Salary Calculator
-              li
-                a(href="") Help
-              li
-                a(href="") Mobile
-              li
-                a(href="") Disable Responsiveness
+              li Questions
+              li Jobs
+              li Developer Jobs Directory
+              li Salary Calculator
+              li Help
+              li Mobile
+              li Disable Responsiveness
           div.bbgrid-3
             h5
               a(href="") PRODUCTS
             ul
-              li
-                a(href="") Teams
-              li
-                a(href="") Talent
-              li
-                a(href="") Advertising
-              li
-                a(href="") Enterprise
+              li Teams
+              li Talent
+              li Advertising
+              li Enterprise
           div.bbgrid-4
             h5
               a(href="") COMPANY
             ul
-              li
-                a(href="") About
-              li
-                a(href="") Press
-              li
-                a(href="") Work Here
-              li
-                a(href="") Legal
-              li
-                a(href="") Privacy Policy
-              li
-                a(href="") Contact Us
+              li About
+              li Press
+              li Work Here
+              li Legal
+              li Privacy Policy
+              li Contact Us
           div.bbgrid-5
             h5
               a(href="") STACK EXCHANGE NETWORK
             ul
-              li
-                a(href="") Technology
-              li
-                a(href="") Life / Arts
-              li
-                a(href="") Culture / Recreation
-              li
-                a(href="") Science
-              li
-                a(href="") Other
+              li Technology
+              li Life / Arts
+              li Culture / Recreation
+              li Science
+              li Other
         div.bbgrid-6
           ul.links
             li

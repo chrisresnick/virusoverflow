@@ -11,8 +11,13 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 router.get("/register", (req, res) =>{
-  res.render("register");
+  res.render("register", {logedIn: req.userLogedIn});
 })
+
+router.post("/demo/", (req,res) => {
+  res.header("Content-Type", "application/x-www-form-urlencoded");
+  res.redirect(res.redirect(307, `/login?username=demo&password=supersecure`));
+});
 
 const registerValid = [
   check("email")
@@ -46,13 +51,13 @@ router.post("/", registerValid, asyncHandler(async (req, res) => {
       return res.redirect("/");
     } catch(e){
       if(e.name === "SequelizeUniqueConstraintError"){
-        return res.render("register", {errors: ["Username and Email must be Unique"]});
+        return res.render("register", {errors: ["Username and Email must be Unique"], logedIn: req.userLogedIn});
       }
     }
 
   }
 
-  res.render("register", {errors})
+  res.render("register", {errors, logedIn: req.userLogedIn})
 }))
 
 module.exports = router;
