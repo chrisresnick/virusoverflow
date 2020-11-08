@@ -27,32 +27,33 @@ router.get(
 	requireAuth,
 	asyncHandler(async (req, res) => {
 		res.send(res.locals.user.username);
-	}),
+	})
 );
 
 router.get("/", async (req, res, next) => {
 	try {
-		const questions = await Question.findAll({
+		let questions = await Question.findAll({
 			include: [User, Answer],
 		});
-		//console.log(questions);
-		res.render("questions", { questions });
+		questions = questions.map(question => question.toJSON())
+		res.render("questions", { questions, logedIn: req.userLogedIn });
 	} catch (err) {
 		next(err);
 	}
 });
 
 router.get("/questions-form", (req, res) => {
-	res.render("questions-form");
+	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
+
 });
 
 router.get("/login", (req, res) => {
-	res.render("login");
+	res.render("login", { logedIn: req.userLogedIn });
 });
 
 router.post("/logout", (req, res) => {
 	delete req.session.auth;
-	res.redirect(req.header("Referer"));
+	res.redirect("/");
 });
 
 const loginValidator = [
@@ -72,13 +73,19 @@ router.post(
 		if (!validationErrors.isEmpty()) {
 			return res.render("login", {
 				errors: validationErrors.errors.map((err) => err.msg),
+				logedIn: req.userLogedIn,
 			});
 		}
-		const { username, password } = req.body;
+		let { username, password } = req.body;
+		if (!username || !password) {
+			username = req.query.username;
+			password = req.query.password;
+		}
 		const user = await User.findOne({ where: { username } });
 		if (!user) {
 			return res.render("login", {
 				errors: ["Username and Password Combination not valid"],
+				logedIn: req.userLogedIn,
 			});
 		}
 		if (await bcrypt.compare(password, user.password.toString())) {
@@ -92,9 +99,10 @@ router.post(
 		} else {
 			return res.render("login", {
 				errors: ["Username and Password Combination not valid"],
+				logedIn: req.userLogedIn,
 			});
 		}
-	}),
+	})
 );
 
 router.post(
@@ -103,7 +111,7 @@ router.post(
 		const searchTerm = req.body.searchTerm.trim();
 		if (searchTerm.length === 0) return res.redirect("/");
 		const words = sw.removeStopwords(searchTerm.split(" "));
-		if(words.length === 0) return res.redirect("/");
+		if (words.length === 0) return res.redirect("/");
 		const re = words.map((word) => `%${word}%`);
 		//console.log("re", re);
 		const results = {};
@@ -116,7 +124,7 @@ router.post(
 						{ title: { [Op.iLike]: term } },
 					],
 				},
-				include: [User, Answer]
+				include: [User, Answer],
 			});
 			//console.log("questions:", questions);
 			let answers = await Answer.findAll({
@@ -129,13 +137,13 @@ router.post(
 					results[question.id] = { count: 0, question };
 				results[question.id].count += countOccur(
 					question.textArea,
-					term.substring(1, term.length - 1),
+					term.substring(1, term.length - 1)
 				);
 				results[question.id].count +=
 					2 *
 					countOccur(
 						question.title,
-						term.substring(1, term.length - 1),
+						term.substring(1, term.length - 1)
 					);
 			});
 			answers.forEach((answer) => {
@@ -149,12 +157,15 @@ router.post(
 				}
 				results[answer.questionId].count += countOccur(
 					answer.textField,
-					term.substring(1, term.length - 1),
+					term.substring(1, term.length - 1)
 				);
 			});
 		}
 		const releventQuestions = Object.keys(results);
-		if (releventQuestions.length === 0) return res.render("noneFound");
+
+		if (releventQuestions.length === 0)
+			return res.render("noneFound", { logedIn: req.userLogedIn });
+
 		releventQuestions.sort((a, b) => {
 			const aVal = results[a].count;
 			const bVal = results[b].count;
@@ -162,8 +173,8 @@ router.post(
 			return aVal > bVal ? -1 : 1;
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
-		res.render("questions", { questions });
-	}),
+		res.render("questions", { questions, logedIn: req.userLogedIn, userId: res.locals.user.id });
+	})
 );
 
 function countOccur(str, subString) {

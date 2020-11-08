@@ -10,7 +10,13 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			Answer.belongsTo(models.Question, { foreignKey: "questionId" });
 			Answer.belongsTo(models.User, { foreignKey: "userId" });
-			// Answer.hasMany(models.answerVotes, { foreignKey: 'answerId' })
+
+			Answer.hasMany(models.AnswerVotes, {
+				foreignKey: "answerId",
+				onDelete: "CASCADE",
+				hooks: true,
+			});
+
 			// define association here
 		}
 	}

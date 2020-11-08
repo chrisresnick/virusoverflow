@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const session = require("express-session");
+const methodOverride = require("method-override");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -35,6 +36,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(async (req, res, next) => {
@@ -42,10 +44,8 @@ app.use(async (req, res, next) => {
 
 	if (req.session.auth) {
 		const { userId } = req.session.auth;
-
 		try {
 			const user = await User.findByPk(userId);
-
 			if (user) {
 				res.locals.authenticated = true;
 				res.locals.user = user;
@@ -60,7 +60,10 @@ app.use(async (req, res, next) => {
 		next();
 	}
 });
-
+app.use((req, res, next) => {
+	req.userLogedIn = res.locals.authenticated ? true : false;
+	next();
+});
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/questions", questionsRouter);
@@ -84,7 +87,7 @@ app.use(function (err, req, res, next) {
 
 	// render the error page
 	res.status(err.status || 500);
-	res.render("error");
+	res.render("error", { logedIn: req.userLogedIn });
 });
 //app.listen(port, () => console.log(`Listening on ${port}`) )
 module.exports = app;
