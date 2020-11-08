@@ -42,7 +42,19 @@ router.get("/", async (req, res, next) => {
 	}
 });
 
-router.get("/questions-form", (req, res) => {
+router.get("/questions-form", requireAuth, async (req, res) => {
+	let { username, password } = req.body;
+	if (!username || !password) {
+		username = req.query.username;
+		password = req.query.password;
+	}
+	const user = await User.findOne({ where: { username } });
+	if (!user) {
+		return res.render("login", {
+			errors: ["User must be logged in to ask a question"],
+			logedIn: req.userLogedIn,
+		});
+	}
 	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
 
 });

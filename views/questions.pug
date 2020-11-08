@@ -9,9 +9,13 @@ block content
       div.mgrid-1
         div.center-grid-1
           div
-            h1 Questions
+            h1.question-title Questions About Coronavirus
           div
             form(action="/questions-form")
+              if(errors)
+                each error in errors
+                  .error
+                    h2=error
               button Ask Question
         div.center-grid-2
           div
