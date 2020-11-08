@@ -2,6 +2,10 @@ extends layout.pug
 
 
 block content
+    if(errors)
+        each error in errors
+            .error
+                h2=error
     form(action="/questions", method="post")
         div.qfgrid-1
             label(for="title") Title

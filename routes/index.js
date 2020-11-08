@@ -43,7 +43,7 @@ router.get("/", async (req, res, next) => {
 })
 
 router.get("/questions-form", (req, res) => {
-	res.render("questions-form", { logedIn: req.userLogedIn });
+	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
 });
 
 router.get("/login", (req, res) => {
@@ -172,7 +172,7 @@ router.post(
 			return aVal > bVal ? -1 : 1;
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
-		res.render("questions", { questions, logedIn: req.userLogedIn });
+		res.render("questions", { questions, logedIn: req.userLogedIn, userId: res.locals.user.id });
 	})
 );
 

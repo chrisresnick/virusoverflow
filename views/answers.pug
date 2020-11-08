@@ -5,8 +5,9 @@ block content
     script(src="/javascripts/vote.js")
     div.container.virusForm
         h1= question.title
-        a(href=`/questions/questions-form/${question.id}`) edit
-        a(href="/") delete
+        if userId === question.userId
+            a(href=`/questions/questions-form/${question.id}`) edit
+            a(href=`/questions/delete/${question.id}`) delete
 
         h2 Question:
         .answer-holder

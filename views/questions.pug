@@ -32,9 +32,6 @@ block content
                     div=`${question.Answers.length}`
                     //- div(id=`answerVoteCountFor${answer.id}` class="voteCount")
                     div.word answers
-                  div.qb-grid3
-                    div 0
-                    div.word views
                   div.qb-grid4.questionLink
                     a(href=`/questions/${question.id}`)=question.title
                   div.qb-grid5.word
@@ -42,8 +39,9 @@ block content
                       each error in errors
                         .error
                           h2=error
-                    a(href=`/questions/questions-form/${question.id}`) edit
-                    a(href="/") delete
+                    if userId === question.userId
+                      a(href=`/questions/questions-form/${question.id}`) edit
+                      a(href=`/questions/delete/${question.id}`) delete
                   div.qb-grid6
                     div.word User
                       span.word= question.User.username
@@ -52,52 +50,14 @@ block content
         br
         h2.center-grid-4 Looking for more? Browse the <a href="/">complete list of questions</a>, or <a>popular tags</a>. Help us answer <a>unanswered questions</a>.
       div.mgrid-2
-        div.div1
-          div The Virusflow Blog
-            div icon
-            div Blog Title
-            div icon
-            div Blog Title
-          div Featured on Meta
-            div icon
-            div Blog Title
-            div icon
-            div Blog Title
-            div icon
-            div Blog Title
-          div Hot Meta Post
-            div votes
-            div Post
-            div votes
-            div Post
-        div.div2
-          div Custom Filters
-          ul
-            li
-              a(href="") Create a custom filter
-        div.div3
-          div
-            span icon
-            span Watched Tags
-            a(href="") edit
-          div
-          //-   each tag in tags create a div element
-        div.div4
-          div
-            span icon
-            span Ignored Tags
-            a(href="") edit
-          div
-            a(href="") Add an ignored tag
-        div.div5
-          div image
-          div blank space
-          div image
-        div.div6
-          h4
-            a(href="") Hot Covid Questions
-          ul
-            //- each hotquest in hotquestions create and li
-        div.div7
-          div icon
-          a(href="") Recent questions feed
+        div
+          div.div1.headTitle The Virusflow Blog
+            div.someSpace The Virus is Alive
+            div.someSpace Do what think Covid-19 really is?
+          div.div2.headTitle Featured News
+            div.someSpace Worldwide News
+            div.someSpace Virus on the loose
+            div.someSpace Masks: A new way of life
+          div.div3.headTitle Hot Post
+            div.someSpace Will this virus kill me?
+            div.someSpace Itchy throat, should I be worried?
