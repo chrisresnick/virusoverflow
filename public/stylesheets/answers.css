@@ -23,8 +23,7 @@
 .post-answer button {
 	margin-top: 3px;
 	display: inline-block;
-	max-width: 15%;
-	/* align-self: c; */
+	max-width: 20%;
 }
 
 .answer-holder {
