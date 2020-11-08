@@ -189,8 +189,9 @@ li a {
 	font-size: 13px;
 }
 
-.home {
+#home {
 	font-weight: bold;
+	padding: 0%;
 }
 
 .nav-selected {
