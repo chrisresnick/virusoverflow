@@ -32,18 +32,19 @@ router.get(
 
 router.get("/", async (req, res, next) => {
 	try {
-		const questions = await Question.findAll({
+		let questions = await Question.findAll({
 			include: [User, Answer],
 		});
-		//console.log(questions);
+		questions = questions.map(question => question.toJSON())
 		res.render("questions", { questions, logedIn: req.userLogedIn });
 	} catch (err) {
 		next(err);
 	}
 });
 
-router.get("/questions-form", requireAuth, (req, res) => {
-	res.render("questions-form", { logedIn: req.userLogedIn });
+router.get("/questions-form", (req, res) => {
+	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
+
 });
 
 router.get("/login", (req, res) => {
@@ -172,7 +173,7 @@ router.post(
 			return aVal > bVal ? -1 : 1;
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
-		res.render("questions", { questions, logedIn: req.userLogedIn });
+		res.render("questions", { questions, logedIn: req.userLogedIn, userId: res.locals.user.id });
 	})
 );
 
