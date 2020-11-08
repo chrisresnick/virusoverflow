@@ -55,7 +55,7 @@ router.get(
 		answers = answers.map((answer) => answer.toJSON());
 
 		res.render("answers", {
-			userId: res.locals.user.id,
+			userId: res.locals.user ? res.locals.user.id : null,
 			question,
 			answers,
 			logedIn: req.userLogedIn,
@@ -66,6 +66,7 @@ router.get(
 // post an answer route
 router.post(
 	"/:id(\\d+)",
+	requireAuth,
 	asyncHandler(async (req, res) => {
 		// console.log("body======", req.body);
 		const { answer } = req.body;
@@ -131,55 +132,55 @@ router.get(
 
 
 router.get("/questions-form/:id(\\d+)", requireAuth, asyncHandler(
-    async (req, res) => {
-        const { id, userId, title, textArea, } = await Question.findByPk(req.params.id)
-        const userPerson = res.locals.user.id
-        if (userPerson === userId) {
-            res.render('questions-form', { id, userId, title, textArea })
-        } else {
-            return res.render("login", {
-                errors: ["User is not authorize to edit this question"],
-                logedIn: req.userLogedIn
-            })
-        }
-    }));
+	async (req, res) => {
+		const { id, userId, title, textArea, } = await Question.findByPk(req.params.id)
+		const userPerson = res.locals.user.id
+		if (userPerson === userId) {
+			res.render('questions-form', { id, userId, title, textArea })
+		} else {
+			return res.render("login", {
+				errors: ["User is not authorize to edit this question"],
+				logedIn: req.userLogedIn
+			})
+		}
+	}));
 
 
 
 router.put("/:id(\\d+)", requireAuth, asyncHandler(
-    async (req, res) => {
-        const { title, textArea } = req.body
-        const question = await Question.findByPk(req.params.id)
+	async (req, res) => {
+		const { title, textArea } = req.body
+		const question = await Question.findByPk(req.params.id)
 
-        if (userPerson !== userId) {
-            return res.render('questions-form', { id, userId, title, textArea, errors: ["Not authorize to edit this question"] })
-        }
+		if (userPerson !== userId) {
+			return res.render('questions-form', { id, userId, title, textArea, errors: ["Not authorize to edit this question"] })
+		}
 
-        question.textArea = textArea;
-        question.title = title;
+		question.textArea = textArea;
+		question.title = title;
 
-        await question.save();
+		await question.save();
 
-        res.redirect(`/questions/${id}`).json({ question })
-    }))
+		res.redirect(`/questions/${id}`).json({ question })
+	}))
 
 
 router.get(
-    "/delete/:id(\\d+)",
-    requireAuth,
-    asyncHandler(
-        async (req, res) => {
-            const { id } = req.params;
-            const question = await db.Question.findByPk(id)
+	"/delete/:id(\\d+)",
+	requireAuth,
+	asyncHandler(
+		async (req, res) => {
+			const { id } = req.params;
+			const question = await db.Question.findByPk(id)
 
-            if (res.locals.user.id != question.userId) {
-                return res.render('/', { errors: ["Not authorize to delete this question please log in"] })
-            }
-            await question.destroy();
+			if (res.locals.user.id != question.userId) {
+				return res.render('/', { errors: ["Not authorize to delete this question please log in"] })
+			}
+			await question.destroy();
 
-            res.redirect('/');
-        }
-    ))
+			res.redirect('/');
+		}
+	))
 
 
 module.exports = router;

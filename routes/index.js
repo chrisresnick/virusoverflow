@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const { asyncHandler } = require("./utils");
+const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question, Answer } = require("../db/models/index");
 
 const bcrypt = require("bcryptjs");
@@ -15,12 +15,12 @@ const { check, validationResult } = require("express-validator");
 //   res.render('index', { title: 'a/A Express Skeleton Home' });
 // });
 
-async function requireAuth(req, res, next) {
-	if (!res.locals.authenticated) {
-		return res.redirect("/login");
-	}
-	return next();
-}
+// async function requireAuth(req, res, next) {
+// 	if (!res.locals.authenticated) {
+// 		return res.redirect("/login");
+// 	}
+// 	return next();
+// }
 
 router.get(
 	"/test",
@@ -43,20 +43,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/questions-form", requireAuth, async (req, res) => {
-	let { username, password } = req.body;
-	if (!username || !password) {
-		username = req.query.username;
-		password = req.query.password;
-	}
-	const user = await User.findOne({ where: { username } });
-	if (!user) {
-		return res.render("login", {
-			errors: ["User must be logged in to ask a question"],
-			logedIn: req.userLogedIn,
-		});
-	}
 	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
-
 });
 
 router.get("/login", (req, res) => {
