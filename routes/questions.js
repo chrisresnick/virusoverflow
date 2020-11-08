@@ -23,6 +23,7 @@ router.post(
 		const { userId, textArea } = req.body;
 		const question = await Question.create({ userId, textArea });
 		res.status(200).json({ question });
+
 	}),
 );
 
@@ -30,6 +31,7 @@ router.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
 		const id = parseInt(req.params.id, 10);
+		
 		const question = await db.Question.findByPk(id, { include: [User] });
 		// console.log(question);
 
