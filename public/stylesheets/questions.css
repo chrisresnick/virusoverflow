@@ -156,6 +156,9 @@
         "div2"
         "div3";
 }
+#blogbox {
+    height: auto;
+}
 
 .div1{
     grid-area: div1;
@@ -176,6 +179,7 @@
     border: 1px solid #2e610c;
     padding: 10px;
     box-shadow: 2px 2px 5px gray;
+
 }
 
 .headTitle {
@@ -186,7 +190,7 @@
     margin-top: 20px;
     text-align: center;
     box-shadow: 2px 2px 5px #2e610c;
-    height: 17px;
+    height: auto;
     background-color:#479c0e65;
     color: black;
 }
