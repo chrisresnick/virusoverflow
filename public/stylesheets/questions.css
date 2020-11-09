@@ -30,25 +30,35 @@
     grid-area: center;
     display: grid;
     padding-right: 12px;
+    margin-top: 10px;
     grid-template-columns: 100%;
     grid-template-rows: 10% 5% auto 5%;
     grid-template-areas:
-        "questions"
-        "links"
-        "questionList"
-        "bottom";
+    "questions"
+    "links"
+    "questionList"
+    "bottom";
 }
 
 .center-grid-1 {
     grid-area: questions;
     display: flex;
+    height: 50px;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 27px;
+    padding: 3px 0px 2px 0px;
+    margin-bottom: 50px;
 }
+
+.question-title {
+    font: 40px Arial, Helvetica, sans-serif;
+}
+
 .center-grid-2 {
     grid-area: links;
     display: flex;
+    height: 50px;
+    margin-bottom: 35px;
     justify-content: flex-end;
     align-items: center;
 }
@@ -62,7 +72,7 @@
 
 .center-grid-3 {
     grid-area: questionList;
-    padding-top: 20px;
+    margin-top: 50px;
     height: auto;
 }
 

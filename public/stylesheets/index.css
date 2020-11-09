@@ -189,8 +189,9 @@ li a {
 	font-size: 13px;
 }
 
-.home {
+#home {
 	font-weight: bold;
+	padding: 0%;
 }
 
 .nav-selected {
@@ -232,7 +233,7 @@ button {
 input {
 	background: #ffffff;
 	width: 700px;
-	padding: 7.8px 9.1px 7.8px 32px;
+	padding: 5px;
 }
 
 /*

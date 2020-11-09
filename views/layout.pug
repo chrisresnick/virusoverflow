@@ -1,11 +1,11 @@
 mixin navBar
   div.nav-bar
     nav
-      ol
-        li
-          a(href="/").home HOME
+      ul
         li
           ul
+            li
+              a(href="/")#home HOME
             li PUBLIC
             li
               a(href="/") Virus Overflow
@@ -48,7 +48,7 @@ html
           li.tbgrid-2 About
             a(href="")
           li.tbgrid-3 Products
-          li.tbgrid-4 For Teams
+          li.tbgrid-4 Search
         div.tbgrid-5
           form(action="/search", method="post", id="search")
               div
