@@ -100,12 +100,14 @@
 .tipsform {
     display: flex;
     align-content: center;
-    justify-content: space-around;
+    justify-content: start;
     width: 30%;
+
     height: 350px;
     border-radius: 1.5em;
     box-shadow: 2px 2px 5px #2e610c;
     background-color: #2e610c48;
+
     flex-direction: column;
 }
 .h3 {
@@ -158,14 +160,31 @@ div.pbottom {
     overflow: hidden;
     background-color: #f1f1f1;
  }
+ .tbuttontitle {
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: grey;
+    height: auto;
+    background-color: white;
+    color: black;
+    font-size: auto;
+    font-weight: bold;
+ }
  .tbutton {
-    background-color:white;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 2px 2px 5px #2e610c;
+    height: auto;
+    background-color: #479c0e65;
+    color: black;
+    font-size: auto;
+    /* background-color:white;
     color: #444;
     padding: 18px;
     width: 100%;
     border: none;
     text-align: center;
-    font-size: 20px;
+    font-size: 20px; */
 
   }
   .active, .collapsible:hover {
