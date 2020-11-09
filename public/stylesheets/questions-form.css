@@ -96,10 +96,10 @@
 .tipsform {
     display: flex;
     align-content: center;
-    justify-content: space-around;
+    justify-content: start;
     width: 30%;
     height: 350px;
-    box-shadow: 1px 1px 5px rgb(228, 220, 220);
+    box-shadow: 1px 1px 5px rgb(128, 125, 125);
     flex-direction: column;
 }
 .h3 {
