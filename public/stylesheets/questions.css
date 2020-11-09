@@ -65,6 +65,7 @@
 
 .linkborder{
     border: 1px solid gray;
+    border-radius: 1em;
     font-size: 13px;
     padding: 10px 15px;
     box-shadow: 2px 2px 5px gray;
@@ -79,15 +80,18 @@
 .classname{
     display: grid;
     padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #479c0e65;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(85, 85, 85);
+    background-color: #479c0e13;
     color: rgb(122, 122, 122);
-    box-shadow: 2px 2px 5px #2e610c;
+    border-radius: 15em;
+    box-shadow: 1px 1px 5px rgb(65, 65, 65);
     grid-template-columns: 1fr 1fr 3.5fr 3.5fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
     "votes answer question question"
-    "votes answer tags user";
+    "votes answer user user";
     border-bottom: .5px solid lightgray;
 }
 
@@ -121,21 +125,17 @@
     grid-area: question;
     display: flex;
     flex-flow: row wrap;
-}
-
-.qb-grid5{
-    grid-area: tags;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: flex-start;
+    margin-left: 15px;
 }
 
 .qb-grid6{
     grid-area: user;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-right: 30px;
+    margin-left: 15px;
 }
 
 /* ================= question boxes ============================== */
@@ -152,9 +152,9 @@
     grid-template-columns: 100%;
     grid-template-rows: auto;
     grid-template-areas:
-        "div1"
-        "div2"
-        "div3";
+    "div1"
+    "div2"
+    "div3";
 }
 #blogbox {
     height: auto;
@@ -163,22 +163,32 @@
 .div1{
     grid-area: div1;
     border: 1px solid #2e610c;
+    border-radius: 1em;
     padding: 10px;
+    margin-bottom: 20px;
     box-shadow: 2px 2px 5px gray;
+    background-color:#479c0e13;
 }
 
 
 .div2{
     grid-area: div2;
     border: 1px solid #2e610c;
+    border-radius: 1em;
+    margin-bottom: 20px;
     padding: 10px;
     box-shadow: 2px 2px 5px gray;
+    background-color:#479c0e13;
 }
 .div3{
     grid-area: div3;
     border: 1px solid #2e610c;
+    border-radius: 1em;
+    margin-bottom: 20px;
     padding: 10px;
     box-shadow: 2px 2px 5px gray;
+
+    background-color:#479c0e13;
 
 }
 
@@ -189,10 +199,13 @@
 .someSpace {
     margin-top: 20px;
     text-align: center;
-    box-shadow: 2px 2px 5px #2e610c;
-    height: auto;
-    background-color:#479c0e65;
+
+    box-shadow: 1px 1px 5px #2e610c;
+    border: 1px solid rgb(82, 82, 82);
+    height: 17px;
+
     color: black;
+    background-color: white;
 }
 
 /* ======================================================================================================== */
