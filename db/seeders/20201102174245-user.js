@@ -26,14 +26,14 @@ module.exports = {
       }, {
         username: "goku",
         password: await bcrypt.hash("kamehameha", 10),
-        email: "givemeajob@yourcompany.com",
+        email: "dragonball@Z.com",
         createdAt: new Date(),
         updatedAt: new Date()
 
       },{
         username: "Luffy",
         password: await bcrypt.hash("strawhat", 10),
-        email: "givemeajob@yourcompany.com",
+        email: "one@piece.com",
         createdAt: new Date(),
         updatedAt: new Date()
 
