@@ -19,7 +19,7 @@ block content
                 a(href=`/questions/${question.id}`)
                 p= question.textArea
             .answer-text2
-                p Asked by #{question.User.username} #{question.createdAt} ago
+                p Asked by #{question.User.username} #{question.createdAt}
 
         h2 Answers:
         div.answer-container
@@ -32,7 +32,7 @@ block content
 
                     .answer-text: p= answer.textField
                     .answer-text2
-                        p Answered by #{answer.User.username} #{answer.updatedAt} ago
+                        p Answered by #{answer.User.username} #{answer.updatedAt}
                         if userId === answer.userId
                             .cruds
                                 button: a(href=`/answers/${answer.id}/edit`) Edit
