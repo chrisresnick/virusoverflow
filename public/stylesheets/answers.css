@@ -28,10 +28,12 @@
 
 .answer-holder {
 	border: 1px solid rgba(0, 0, 0, 0.5);
-	padding: 3px;
+	padding: 10px;
 	margin-top: 3px;
 	display: flex;
 	justify-content: space-between;
+	width: 1000px;
+	height: auto;
 	/* flex-direction: row-reverse; */
 }
 
@@ -62,6 +64,7 @@
 .answer-text2 {
 	max-width: 25%;
 	font-size: 14px;
+	margin: 5px;
 }
 
 .vote-holder button {
