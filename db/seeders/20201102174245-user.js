@@ -3,8 +3,8 @@ const bcrypt = require("bcryptjs")
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
-      await queryInterface.bulkInsert('Users', [
-        {
+    await queryInterface.bulkInsert('Users', [
+      {
         username: 'bob',
         password: await bcrypt.hash("password", 10),
         email: "bob@bob.com",
@@ -23,6 +23,18 @@ module.exports = {
         email: "givemeajob@yourcompany.com",
         createdAt: new Date(),
         updatedAt: new Date()
+      }, {
+        username: "Peppermint Patty",
+        password: await bcrypt.hash("patty", 10),
+        email: "peppermint@patty.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        username: "Tony Two Toes",
+        password: await bcrypt.hash("tony", 10),
+        email: "twotoes@tony.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
 
     ], {});
@@ -30,6 +42,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-     await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };
