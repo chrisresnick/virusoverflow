@@ -41,7 +41,22 @@ module.exports = {
 				// 	updatedAt: new Date(),
 				// },
 
-				{
+
+    await queryInterface.bulkInsert('Users', [
+      {
+        username: 'bob',
+        password: await bcrypt.hash("password", 10),
+        email: "bob@bob.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      }, {
+        username: "test",
+        password: await bcrypt.hash("password", 10),
+        email: "test@test.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },				{
 					username: "goku",
 					password: await bcrypt.hash("kamehameha", 10),
 					email: "dragonball@Z.com",
@@ -70,6 +85,13 @@ module.exports = {
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
+      {
+        username: "demo",
+        password: await bcrypt.hash("supersecure", 10),
+        email: "givemeajob@yourcompany.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, 
 
 				{
 					username: "Peppermint Patty",
@@ -125,7 +147,6 @@ module.exports = {
 			{}
 		);
 	},
-
 	down: async (queryInterface, Sequelize) => {
 		await queryInterface.bulkDelete("Users", null, {});
 	},
