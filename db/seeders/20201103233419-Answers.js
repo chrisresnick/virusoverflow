@@ -8,16 +8,22 @@ module.exports = {
 
     await queryInterface.bulkInsert('Answers', [
       {
-        questionId: (await Question.findOne({ where: { title: "Test" } })).id,
+        questionId: (await Question.findOne({ where: { title: "What can I do to keep from getting corona" } })).id,
         userId: (await User.findOne({ where: { username: "bob" } })).id,
-        textField: "Duis eiusmod in velit officia.",
+        textField: "No, but masks will.",
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        questionId: (await Question.findOne({ where: { title: "Test2" } })).id,
-        userId: (await User.findOne({ where: { username: "bob" } })).id,
-        textField: "Duis eiusmod in velit officia.",
+        questionId: (await Question.findOne({ where: { title: "Where did coronavirus come from" } })).id,
+        userId: (await User.findOne({ where: { username: "demo" } })).id,
+        textField: "Borat",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },{
+        questionId: (await Question.findOne({ where: { title: "Where did coronavirus come from" } })).id,
+        userId: (await User.findOne({ where: { username: "bryce" } })).id,
+        textField: "Wuxan, China",
         createdAt: new Date(),
         updatedAt: new Date()
       },

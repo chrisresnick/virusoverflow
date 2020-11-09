@@ -8,23 +8,16 @@ module.exports = {
 
     await queryInterface.bulkInsert('Questions', [
       {
-        userId: (await User.findOne({ where: { username: "bob" }})).id,
-        title: "Test",
-        textArea: "Non et excepteur esse ea dolore et esse.",
+        userId: (await User.findOne({ where: { username: "ian" }})).id,
+        title: "Where did coronavirus come from",
+        textArea: "Whence cometh coronavirus?",
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        userId: (await User.findOne({ where: { username: "test" }})).id,
-        title: "Test2",
-        textArea: "Dolore voluptate irure non consequat sint nostrud elit magna ut adipisicing do ea veniam ea. et excepteur esse ea dolore et esse.",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        userId: (await User.findOne({ where: { username: "test" }})).id,
-        title: "Test3",
-        textArea: "Mollit pariatur ipsum magna eu duis commodo..",
+        userId: (await User.findOne({ where: { username: "bryce" }})).id,
+        title: "What can I do to keep from getting corona",
+        textArea: "Will boardgames help?",
         createdAt: new Date(),
         updatedAt: new Date()
       },

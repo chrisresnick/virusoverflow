@@ -23,6 +23,18 @@ module.exports = {
         email: "givemeajob@yourcompany.com",
         createdAt: new Date(),
         updatedAt: new Date()
+      }, {
+        username: "ian",
+        password: await bcrypt.hash("password", 10),
+        email: "ian@ian.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        username: "bryce",
+        password: await bcrypt.hash("password", 10),
+        email: "bryce@bryce.com",
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
 
     ], {});
