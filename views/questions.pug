@@ -38,14 +38,6 @@ block content
                     div.word answers
                   div.qb-grid4.questionLink
                     a(href=`/questions/${question.id}`)=question.title
-                  div.qb-grid5.word
-                    if(errors)
-                      each error in errors
-                        .error
-                          h2=error
-                    if userId === question.userId
-                      a(href=`/questions/questions-form/${question.id}`) edit
-                      a(href=`/questions/delete/${question.id}`) delete
                   div.qb-grid6
                     div.word User
                       span.word= question.User.username
