@@ -4,11 +4,7 @@ block content
     link(rel="stylesheet", href="/stylesheets/answers.css")
     script(src="/javascripts/vote.js")
     div.container.virusForm
-        h1= question.title
-        if userId === question.userId
-            a(href=`/questions/questions-form/${question.id}`) edit
-            a(href=`/questions/delete/${question.id}`) delete
-
+        h1.titles= question.title
         h2 Question:
         .answer-holder
             .vote-holder
@@ -19,7 +15,12 @@ block content
                 a(href=`/questions/${question.id}`)
                 p= question.textArea
             .answer-text2
-                p Asked by #{question.User.username} #{question.createdAt}
+
+                p Asked by #{question.User.username} #{question.createdAt} ago
+                if userId === question.userId
+                    .cruds
+                        button: a(href=`/questions/questions-form/${question.id}`) Edit
+                        button: a(href=`/questions/delete/${question.id}`) Delete
 
         h2 Answers:
         div.answer-container

@@ -23,13 +23,15 @@
 
 .formgrid {
     display: flex;
-    box-shadow: 1px 1px 5px grey;
+    box-shadow: 2px 2px 5px #2e610c;
+    background-color: #2e610c48;
+    border-radius: 1.5em;
     justify-content: space-around;
     flex-direction: column;
     width: 100%;
-    height: px;
-
+    margin-bottom: 20px;
 }
+
 .formtitle {
     padding: 15px;
     font-size: 15px;
@@ -71,7 +73,9 @@
 }
 #review {
     margin-top: 5px;
+    margin-bottom: 20px;
 }
+
 .formtags {
     padding: 15px;
     font-size: 15px;
@@ -98,8 +102,12 @@
     align-content: center;
     justify-content: start;
     width: 30%;
-    height: 300px;
-    box-shadow: 1px 1px 5px rgb(128, 125, 125);
+
+    height: 350px;
+    border-radius: 1.5em;
+    box-shadow: 2px 2px 5px #2e610c;
+    background-color: #2e610c48;
+
     flex-direction: column;
 }
 .h3 {
@@ -111,6 +119,7 @@
     display: flex;
     margin-top: 5px;
     margin-bottom: 5px;
+    border: 1.5px solid rgb(82, 82, 82);
 
 }
 

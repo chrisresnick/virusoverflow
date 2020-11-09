@@ -12,17 +12,13 @@ block content
                         div.formtitle
                             label(for="title") Title
                                 p.titleP Be specific and imagine you're asking a question to another person
-                            input(name="title", type="text")
+                            input(name="title", type="text" value= title)
                         div.formbody
-                                label(for="textArea" ) Body
-                                    p.bodyP Include all the information someone would need to answer you question
-                                textarea(type="text" name="textArea")
-                        //- div.formtags
-                        //-             label(for="body") Tags
-                        //-                 p.tagsP Add up to 5 tags to describe what your question is about
-                        //-                 input(name="tags", type="text")
+                            label(for="textArea" ) Body
+                                p.bodyP Include all the information someone would need to answer you question
+                            textarea(type="text" name="textArea")= textArea
                     div
-                        button#review(type="submit") Review Your Question
+                        button#review(type="submit") Submit Your Question
                 div.tipsform
                     .tbuttontitle How to ask a Question
                         div.step1
