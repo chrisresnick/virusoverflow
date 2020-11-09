@@ -27,6 +27,18 @@ module.exports = {
         textArea: "Mollit pariatur ipsum magna eu duis commodo..",
         createdAt: new Date(),
         updatedAt: new Date()
+      },{
+        userId: (await User.findOne({ where: { username: "goku" }})).id,
+        title: "Mega Cough",
+        textArea: "What's the best solution for a cough?",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },{
+        userId: (await User.findOne({ where: { username: "Luffy" }})).id,
+        title: "Fatigue",
+        textArea: "Should I be feeling tired all day?",
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
     ], {});
 

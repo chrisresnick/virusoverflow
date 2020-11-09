@@ -20,6 +20,18 @@ module.exports = {
         textField: "Duis eiusmod in velit officia.",
         createdAt: new Date(),
         updatedAt: new Date()
+      },{
+        questionId: (await Question.findOne({ where: { title: "Mega Cough" } })).id,
+        userId: (await User.findOne({ where: { username: "goku" } })).id,
+        textField: "I hear using lemon water helps!",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },{
+        questionId: (await Question.findOne({ where: { title: "Fatigue" } })).id,
+        userId: (await User.findOne({ where: { username: "Luffy" } })).id,
+        textField: "Try exercising before taking any meds.",
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
 
     ], {});
