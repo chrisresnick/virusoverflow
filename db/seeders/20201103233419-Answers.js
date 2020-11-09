@@ -21,6 +21,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        questionId: (await Question.findOne({ where: { title: "The virus is scary" } })).id,
+        userId: (await User.findOne({ where: { username: "Tony Two Toes" } })).id,
+        textField: "Most people who catch the virus, will have minimum symptoms if any at all. But if you have a any underlining issues you may have more complications if you are infected.",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        questionId: (await Question.findOne({ where: { title: "It Started Where" } })).id,
+        userId: (await User.findOne({ where: { username: "Peppermint Patty" } })).id,
+        textField: "In the city of Wuhan in China, I believe.",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
 
     ], {});
 
