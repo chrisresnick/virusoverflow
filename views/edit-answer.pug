@@ -2,13 +2,13 @@ extends layout.pug
 
 block content
     link(rel="stylesheet", href="/stylesheets/answers.css")
-    h1 Edit
+    h1.edit Edit
     if(errors)
         each error in errors
             .error
                 h2=error
-    else 
-        form(action=`/answers/${answer.id}?_method=PATCH` method="POST")
+    else
+        form.edit(action=`/answers/${answer.id}?_method=PATCH` method="POST")
             div.post-answer
-                textarea(name="textField", cols="30", rows="10")= answer.textField
+                textarea.editbutton(name="textField", cols="30", rows="10")= answer.textField
                 button(type="submit") Submit Changes
