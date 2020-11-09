@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const { asyncHandler } = require("./utils");
+const { asyncHandler, requireAuth } = require("./utils");
 const { User, Question, Answer } = require("../db/models/index");
 
 const bcrypt = require("bcryptjs");
@@ -10,17 +10,6 @@ const sw = require("stopword");
 const Op = require("sequelize").Op;
 const { check, validationResult } = require("express-validator");
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'a/A Express Skeleton Home' });
-// });
-
-async function requireAuth(req, res, next) {
-	if (!res.locals.authenticated) {
-		return res.redirect("/login");
-	}
-	return next();
-}
 
 router.get(
 	"/test",
@@ -42,9 +31,8 @@ router.get("/", async (req, res, next) => {
 	}
 });
 
-router.get("/questions-form", (req, res) => {
+router.get("/questions-form", requireAuth, async (req, res) => {
 	res.render("questions-form", { logedIn: req.userLogedIn, userId: res.locals.user.id });
-
 });
 
 router.get("/login", (req, res) => {
