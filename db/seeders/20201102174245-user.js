@@ -42,7 +42,7 @@ module.exports = {
 				// },
 
 
-    await queryInterface.bulkInsert('Users', [
+    //await queryInterface.bulkInsert('Users', [
       {
         username: 'bob',
         password: await bcrypt.hash("password", 10),
