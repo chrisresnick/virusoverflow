@@ -5,58 +5,14 @@ module.exports = {
 		await queryInterface.bulkInsert(
 			"Users",
 			[
-				// {
-				// 	username: "bob",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "bob@bob.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "test",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "test@test.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "demo",
-				// 	password: await bcrypt.hash("supersecure", 10),
-				// 	email: "givemeajob@yourcompany.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "saadwho",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "saad@aol.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "awesome",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "takejob@mycompany.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-
-
-    await queryInterface.bulkInsert('Users', [
-      {
-        username: 'bob',
-        password: await bcrypt.hash("password", 10),
-        email: "bob@bob.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-
-      }, {
-        username: "test",
-        password: await bcrypt.hash("password", 10),
-        email: "test@test.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },				{
+				{
+					username: "test",
+					password: await bcrypt.hash("password", 10),
+					email: "test@test.com",
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				{
 					username: "goku",
 					password: await bcrypt.hash("kamehameha", 10),
 					email: "dragonball@Z.com",
@@ -85,14 +41,6 @@ module.exports = {
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
-      {
-        username: "demo",
-        password: await bcrypt.hash("supersecure", 10),
-        email: "givemeajob@yourcompany.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }, 
-
 				{
 					username: "Peppermint Patty",
 					password: await bcrypt.hash("patty", 10),
@@ -116,13 +64,6 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
-					username: "test",
-					password: await bcrypt.hash("password", 10),
-					email: "test@test.com",
-					createdAt: new Date(),
-					updatedAt: new Date(),
-				},
-				{
 					username: "demo",
 					password: await bcrypt.hash("supersecure", 10),
 					email: "givemeajob@yourcompany.com",
@@ -132,7 +73,7 @@ module.exports = {
 				{
 					username: "saadwho",
 					password: await bcrypt.hash("password", 10),
-					email: "givemejob@yourcompany.com",
+					email: "saad@saad.com",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
