@@ -5,60 +5,6 @@ module.exports = {
 		await queryInterface.bulkInsert(
 			"Users",
 			[
-<<<<<<< HEAD
-				// {
-				// 	username: "bob",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "bob@bob.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "test",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "test@test.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "demo",
-				// 	password: await bcrypt.hash("supersecure", 10),
-				// 	email: "givemeajob@yourcompany.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "saadwho",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "saad@aol.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "awesome",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "takejob@mycompany.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-
-
-    //await queryInterface.bulkInsert('Users', [
-      {
-        username: 'bob',
-        password: await bcrypt.hash("password", 10),
-        email: "bob@bob.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-
-      }, {
-        username: "test",
-        password: await bcrypt.hash("password", 10),
-        email: "test@test.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },				{
-=======
 				{
 					username: "test",
 					password: await bcrypt.hash("password", 10),
@@ -67,7 +13,6 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 				{
->>>>>>> 24ad1108af3d7bcc78bd0420d2b2572ec4e33ab6
 					username: "goku",
 					password: await bcrypt.hash("kamehameha", 10),
 					email: "dragonball@Z.com",
