@@ -10,6 +10,22 @@ body {
 		"footer footer footer footer footer footer footer footer"; */
 }
 
+.author-info {
+	display: flex;
+	width: 10vw;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.author-info img {
+	width: 45px;
+	height: 45px;
+}
+
+.author-info p {
+	text-align: center;
+}
+
 .grid-area-1 {
 	/* grid-area: header; */
 	height: 10vh;
@@ -35,8 +51,9 @@ body {
 	display: flex;
 	background-color: #153002;
 	/* background-color: #242729; */
-	color: #929aa1;
-	justify-content: center;
+	color: white;
+	justify-content: space-around;
+	align-items: center;
 }
 
 /* ===================================Header Grid===================================================== */
@@ -93,15 +110,7 @@ body {
 /* ========================================================================================== */
 
 /* ===================================Footer Grid========================================== */
-.bottom-bar {
-	display: grid;
-	max-width: 1264px;
-	padding: 10px;
-	padding-top: 30px;
-	grid-template-columns: repeat(6, auto);
-	justify-content: space-evenly;
-	grid-template-areas: "icon VO products company exchange links";
-}
+
 
 .bbgrid-1 {
 	grid-area: icon;
