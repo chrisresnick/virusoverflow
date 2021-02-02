@@ -44,7 +44,7 @@ Virus-overflow is a question and answer webapp for people to get their covid que
 
 ## Database Schema: 
 
-
+![database schema](https://s3.amazonaws.com/colour.ly/virusoverflow-db-schema.png)
 
 ## Routes
 
