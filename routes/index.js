@@ -161,7 +161,7 @@ router.post(
 			return aVal > bVal ? -1 : 1;
 		});
 		const questions = releventQuestions.map((q) => results[q].question);
-		res.render("questions", { questions, logedIn: req.userLogedIn, userId: res.locals.user.id });
+		res.render("questions", { questions, logedIn: req.userLogedIn, userId: res.locals.user ? res.locals.user.id : null});
 	})
 );
 
