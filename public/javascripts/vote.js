@@ -30,8 +30,8 @@ async function vote(e) {
 			body: JSON.stringify({ isUpVote }),
 		},
 	).catch((e) => console.log(e));
-	if (res.redirected) return (window.location = res.url);
-	const { count } = await res.json();
+	const { count, requireLogin } = await res.json();
+	if(requireLogin) return window.location ="/login";
 	document.querySelector(`#voteCountFor${questionId}`).innerHTML = count;
 }
 
@@ -46,7 +46,7 @@ async function answerVote(e) {
 		},
 		body: JSON.stringify({ isUpVote }),
 	}).catch((e) => console.log(e));
-	if (res.redirected) return (window.location = res.url);
-	const { count } = await res.json();
+	const { count, requireLogin} = await res.json();
+	if(requireLogin) return window.location = "/login";
 	document.querySelector(`#answerVoteCountFor${answerId}`).innerHTML = count;
 }
