@@ -21,10 +21,10 @@ router.get(
 );
 router.post(
 	"/:id(\\d+)/vote",
-	requireAuth,
 	asyncHandler(async (req, res) => {
 		const answerId = req.params.id;
 		const { isUpVote } = req.body;
+		if(!res.locals.user) return res.json({requireLogin: true})
 		const userId = res.locals.user.id;
 		const existingVote = await AnswerVotes.findOne({
 			where: { answerId, userId },
