@@ -14,3 +14,32 @@ Virus-overflow is a question and answer webapp for people to get their covid que
 <img alt="Heroku" src="https://img.shields.io/badge/heroku%20-%23430098.svg?&style=for-the-badge&logo=heroku&logoColor=white"/>
 </p>
 
+
+## Features
+
+* User Authentication
+  * Users can sign up, log in, and log out
+  * Users can try out the app with a Demo User login
+  * Most of the features will be unavailable to the guest user, such as posting a question, voting or answering a question
+* Ability to ask a question
+  * Members can ask a question
+  * Members can delete or edit their question
+* Ability to respond to a question
+  * Members can respond to a question
+  * Users can view questions on the questions page
+* Up and Down vote
+  * Members can upvote and downvote
+  * Only one vote per question
+* Search for a question
+  * Anyone can search for a question
+* Hosting on Heroku
+  * Hosted on a live server that is always up
+
+## Extras:
+* User Profile
+* Reputation - keep track of number of good answers
+  * verification 
+* Attachments on posts
+
+
+## Routes
