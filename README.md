@@ -1,4 +1,5 @@
-<h1 align="center">Virus-overflow</h1>
+<h1 align="center">virus-overflow</h1>
+
 
 <h3 align="center">
 Virus-overflow is a question and answer webapp for people to get their covid questions answered, inspired by famous stack overflow.
@@ -14,7 +15,7 @@ Virus-overflow is a question and answer webapp for people to get their covid que
 <img alt="Heroku" src="https://img.shields.io/badge/heroku%20-%23430098.svg?&style=for-the-badge&logo=heroku&logoColor=white"/>
 </p>
 
-
+## Checkout the Live App @ [virus-overflow](https://virus-overflow.herokuapp.com)
 ## Features
 
 * User Authentication
@@ -41,6 +42,9 @@ Virus-overflow is a question and answer webapp for people to get their covid que
   * verification 
 * Attachments on posts
 
+## Database Schema: 
+
+![database schema](https://s3.amazonaws.com/colour.ly/virusoverflow-db-schema.png)
 
 ## Routes
 
@@ -57,7 +61,7 @@ Virus-overflow is a question and answer webapp for people to get their covid que
   - `POST /questions` create a new question
 
   - `GET /questions/:id` return a question and all associated answers, and votes
-  
+
   - `DELETE /questions/:id` delete a question
 
   - `POST /questions/:id/vote` up/down vote a question
