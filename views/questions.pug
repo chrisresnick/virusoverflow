@@ -16,7 +16,7 @@ block content
                 each error in errors
                   .error
                     h2=error
-              button Ask Question
+              button#ask-question-btn Ask Question
         //- div.center-grid-2
           //- div
           //- div.links-grid
@@ -30,7 +30,7 @@ block content
               each question in questions
                 div.classname
                   div.qb-grid1
-                    div(id=`voteCountFor${question.id}` class="voteCount")
+                    div(id=`voteCountFor${question.id}` class="voteCount") 0
                     div.word votes
                   div.qb-grid2
                     div=`${question.Answers.length}`
@@ -44,7 +44,7 @@ block content
                     div.word modified
                       span.word= question.updatedAt.toDateString()
         br
-        h2.center-grid-4 Looking for more? Browse the <a href="/">complete list of questions</a>, or <a>popular tags</a>. Help us answer <a>unanswered questions</a>.
+        //- h2.center-grid-4 Looking for more? Browse the <a href="/">complete list of questions</a>, or <a>popular tags</a>. Help us answer <a>unanswered questions</a>.
       //- div.mgrid-2
       //-   div#blogbox
           //- div.div1.headTitle The Virusflow Blog

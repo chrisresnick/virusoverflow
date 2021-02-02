@@ -1,7 +1,7 @@
 .container {
 	display: grid;
 	padding: 5px;
-	margin: 3px;
+	/* margin: 3px; */
 }
 
 .vote-button {
@@ -14,10 +14,14 @@
 }
 
 .post-answer {
-	margin-top: 3px;
+	/* margin-top: 3px; */
 	display: flex;
 	flex-direction: column;
 	align-content: center;
+}
+
+.post-answer textarea {
+	resize: none;
 }
 
 .post-answer button {
@@ -29,15 +33,14 @@
 .answer-holder {
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	padding: 10px;
-	margin-top: 3px;
 	border-radius: 1em;
-    background-color: #479c0e13;
+	background-color: #479c0e13;
 	box-shadow: 2px 2px 5px #2e610c;
 	margin-bottom: 10px;
 	margin-top: 10px;
 	display: flex;
 	justify-content: space-between;
-	width: 1000px;
+	width: 50vw;
 	height: auto;
 	/* flex-direction: row-reverse; */
 }
@@ -110,8 +113,7 @@
 	background: rgba(255, 0, 0, 01);
 }
 
-
-.edit{
+.edit {
 	margin-left: 400px;
 	margin-right: 400px;
 	margin-top: 20px;

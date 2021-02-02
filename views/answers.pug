@@ -9,7 +9,7 @@ block content
         .answer-holder
             .vote-holder
                 div(id=`upVoteFor${question.id}` class="up-vote-button")
-                div(id=`voteCountFor${question.id}` class="voteCount")
+                div(id=`voteCountFor${question.id}` class="voteCount") 0
                 div(id=`downVoteFor${question.id}` class="down-vote-button" class="down-vote-button")
             .question-text
                 a(href=`/questions/${question.id}`)
@@ -28,7 +28,7 @@ block content
                 .answer-holder
                     .vote-holder
                         div(id=`upAnswerVoteFor${answer.id}` class="up-vote-button")
-                        div(id=`answerVoteCountFor${answer.id}`  class="voteCount") Vote Count
+                        div(id=`answerVoteCountFor${answer.id}`  class="voteCount") 0
                         div(id=`downAnswerVoteFor${answer.id}` class="down-vote-button")
 
                     .answer-text: p= answer.textField
