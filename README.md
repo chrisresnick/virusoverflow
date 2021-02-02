@@ -43,3 +43,33 @@ Virus-overflow is a question and answer webapp for people to get their covid que
 
 
 ## Routes
+
+* Auth Routes
+  - `POST /login` Login a User
+
+  - `POST /users/register` User Signup
+
+  - `POST /logout` User logout
+
+* Question Routes
+  - `GET /questions` Show all the questions
+
+  - `POST /questions` create a new question
+
+  - `GET /questions/:id` return a question and all associated answers, and votes
+  
+  - `DELETE /questions/:id` delete a question
+
+  - `POST /questions/:id/vote` up/down vote a question
+
+* Answer Routes
+  - `POST /questions/:id` answer a question
+
+  - `POST /answers/:id/vote` up/down vote a answer
+
+  - `PATCH /answers/:id` edit answer
+
+  - `DELET /answers/:id`  delete answer
+
+* Search Route
+  - `GET search/` seach questions/answers
