@@ -1,31 +1,31 @@
 mixin navBar
-  div.nav-bar
-    nav
-      ul
-        li
-          ul
-            li
-              a(href="/")#home HOME
-            li PUBLIC
-            li
-              a(href="/") Virus Overflow
-            li
-              a Tags
-            li
-              a Users
-            li FIND A JOB
-            li
-              a Jobs
-            li
-              a Companies
-        li
-          ol
-            li.nav-base
-              div TEAMS
-              div What's this?
-            li.nav-base-2
-              div Icon
-              div Free 30 Day trial
+  //- div.nav-bar
+  //-   nav
+  //-     ul
+  //-       li
+  //-         ul
+  //-           li
+        //-       a(href="/")#home HOME
+        //-     li PUBLIC
+        //-     li
+        //-       a(href="/") Virus Overflow
+        //-     li
+        //-       a Tags
+        //-     li
+        //-       a Users
+        //-     li FIND A JOB
+        //-     li
+        //-       a Jobs
+        //-     li
+        //-       a Companies
+        //- li
+        //-   ol
+        //-     li.nav-base
+        //-       div TEAMS
+        //-       div What's this?
+        //-     li.nav-base-2
+        //-       div Icon
+        //-       div Free 30 Day trial
 
 doctype html
 html
@@ -43,11 +43,12 @@ html
     header.grid-area-1
       div.top-bar
         div.tbgrid-1
-          a(href="/") Icon
+          a(href="/")
+            //- img(src="https://i.imgur.com/BqkATdw.png")
         ol
-          li.tbgrid-2 About
+          //- li.tbgrid-2 About
             a(href="")
-          li.tbgrid-3 Products
+          //- li.tbgrid-3 Products
           li.tbgrid-4 Search
         div.tbgrid-5
           form(action="/search", method="post", id="search")

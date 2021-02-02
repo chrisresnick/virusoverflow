@@ -1,5 +1,6 @@
 .questions{
-    display: grid;
+    display: flex;
+    justify-content: center;
     width: 1264px;
     height: auto;
     margin-left: auto;
@@ -20,7 +21,7 @@
     grid-area: main;
     display: grid;
     padding: 24px;
-    grid-template-columns: auto 300px;
+    grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:
         "center sidebar";
@@ -73,7 +74,7 @@
 
 .center-grid-3 {
     grid-area: questionList;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     height: auto;
 }
 
