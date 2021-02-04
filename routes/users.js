@@ -16,7 +16,7 @@ router.get("/register", (req, res) =>{
 
 router.post("/demo/", (req,res) => {
   res.header("Content-Type", "application/x-www-form-urlencoded");
-  res.redirect(res.redirect(307, `/login?username=demo&password=supersecure`));
+  res.redirect(307, `/login?username=demo&password=supersecure`);
 });
 
 const registerValid = [
