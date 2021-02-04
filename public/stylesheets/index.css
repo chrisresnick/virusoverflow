@@ -10,6 +10,12 @@ body {
 		"footer footer footer footer footer footer footer footer"; */
 }
 
+.homeLogo {
+	height: 8vh;
+	width: auto;
+}
+
+
 .author-info {
 	display: flex;
 	width: 10vw;
@@ -288,4 +294,9 @@ input {
 .error {
 	background-color: rgba(255, 0, 0, 0.25);
 	margin-top: 5px;
+}
+
+.login-button {
+	min-width: 10vw;
+	margin: 5px;
 }
