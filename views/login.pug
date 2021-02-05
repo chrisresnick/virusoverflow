@@ -10,11 +10,9 @@ block content
             h1 Log in
         form(action="/login", method="post")
             .inputBlock
-                label(for="username") username
-                input#username(name="username", type="text")
+                input#username(name="username", type="text" placeholder='Username')
             .inputBlock
-                label(for="password") password
-                input#password(name="password", type="password")
+                input#password(name="password", type="password" placeholder='Password')
             .buttonHolder
                 button.login-button Log In
         form(action="/users/demo", method = "post")
