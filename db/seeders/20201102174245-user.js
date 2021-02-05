@@ -1,163 +1,94 @@
-"use strict";
-const bcrypt = require("bcryptjs");
+'use strict';
+const bcrypt = require('bcryptjs');
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
 		await queryInterface.bulkInsert(
-			"Users",
+			'Users',
 			[
-<<<<<<< HEAD
 				{
-					username: "test",
-					password: await bcrypt.hash("password", 10),
-					email: "test@test.com",
+					username: 'test',
+					password: await bcrypt.hash('password', 10),
+					email: 'test@test.com',
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
-=======
-<<<<<<< HEAD
-				{
-=======
-				// {
-				// 	username: "bob",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "bob@bob.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "test",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "test@test.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "demo",
-				// 	password: await bcrypt.hash("supersecure", 10),
-				// 	email: "givemeajob@yourcompany.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "saadwho",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "saad@aol.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-				// {
-				// 	username: "awesome",
-				// 	password: await bcrypt.hash("password", 10),
-				// 	email: "takejob@mycompany.com",
-				// 	createdAt: new Date(),
-				// 	updatedAt: new Date(),
-				// },
-
-
-    await queryInterface.bulkInsert('Users', [
-      {
-        username: 'bob',
-        password: await bcrypt.hash("password", 10),
-        email: "bob@bob.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-
-      }, {
-        username: "test",
-        password: await bcrypt.hash("password", 10),
-        email: "test@test.com",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },				{
->>>>>>> bef7952bf08b6de1b471fcf72db9265baf538380
->>>>>>> 21b6677f5e1f4bd4bb8268c8eb9a4f03224e499d
-					username: "goku",
-					password: await bcrypt.hash("kamehameha", 10),
-					email: "dragonball@Z.com",
+					username: 'goku',
+					password: await bcrypt.hash('kamehameha', 10),
+					email: 'dragonball@Z.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
-					username: "Luffy",
-					password: await bcrypt.hash("strawhat", 10),
-					email: "one@piece.com",
+					username: 'Luffy',
+					password: await bcrypt.hash('strawhat', 10),
+					email: 'one@piece.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 
 				{
-					username: "ian",
-					password: await bcrypt.hash("password", 10),
-					email: "ian@ian.com",
+					username: 'ian',
+					password: await bcrypt.hash('password', 10),
+					email: 'ian@ian.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
-					username: "bryce",
-					password: await bcrypt.hash("password", 10),
-					email: "bryce@bryce.com",
+					username: 'bryce',
+					password: await bcrypt.hash('password', 10),
+					email: 'bryce@bryce.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
-					username: "Peppermint Patty",
-					password: await bcrypt.hash("patty", 10),
-					email: "peppermint@patty.com",
+					username: 'Peppermint Patty',
+					password: await bcrypt.hash('patty', 10),
+					email: 'peppermint@patty.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
-					username: "Tony Two Toes",
-					password: await bcrypt.hash("tony", 10),
-					email: "twotoes@tony.com",
+					username: 'Tony Two Toes',
+					password: await bcrypt.hash('tony', 10),
+					email: 'twotoes@tony.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 
 				{
-					username: "bob",
-					password: await bcrypt.hash("password", 10),
-					email: "bob@bob.com",
+					username: 'bob',
+					password: await bcrypt.hash('password', 10),
+					email: 'bob@bob.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
-<<<<<<< HEAD
-=======
-					username: "test",
-					password: await bcrypt.hash("password", 10),
-					email: "test@test.com",
+					username: 'demo',
+					password: await bcrypt.hash('supersecure', 10),
+					email: 'givemeajob@yourcompany.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
->>>>>>> 21b6677f5e1f4bd4bb8268c8eb9a4f03224e499d
-					username: "demo",
-					password: await bcrypt.hash("supersecure", 10),
-					email: "givemeajob@yourcompany.com",
+					username: 'saadwho',
+					password: await bcrypt.hash('password', 10),
+					email: 'saad@saad.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
 				{
-					username: "saadwho",
-					password: await bcrypt.hash("password", 10),
-					email: "saad@saad.com",
+					username: 'awesome',
+					password: await bcrypt.hash('password', 10),
+					email: 'takejob@mycompany.com',
 					createdAt: new Date(),
-					updatedAt: new Date()
+					updatedAt: new Date(),
 				},
-				{
-					username: "awesome",
-					password: await bcrypt.hash("password", 10),
-					email: "takejob@mycompany.com",
-					createdAt: new Date(),
-					updatedAt: new Date()
-				}
 			],
 			{}
 		);
 	},
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.bulkDelete("Users", null, {});
-	}
+		await queryInterface.bulkDelete('Users', null, {});
+	},
 };
