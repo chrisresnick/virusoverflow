@@ -10,16 +10,12 @@ block content
                         h2=error
             form(action="/users/", method="post")
                 .inputBlock
-                    label(for="email") Email
-                    input#email(type="email", name="email")
+                    input#email(type="email", name="email", placeholder='Email')
                 .inputBlock
-                    label(for="username") Username
-                    input#username(name="username", type="text")
+                    input#username(name="username", type="text" placeholder='Username')
                 .inputBlock
-                    label(for="password") Password
-                    input#password(name="password", type="password")
+                    input#password(name="password", type="password" placeholder='Password')
                 .inputBlock
-                    label(for="password_conf") Confirm Password
-                    input#password_conf(name="password_conf", type="password")
+                    input#password_conf(name="password_conf", type="password" placeholder='Confirm Password')
                 .buttonHolder
                     button Submit

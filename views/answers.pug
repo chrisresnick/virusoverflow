@@ -36,7 +36,8 @@ block content
                         p Answered by #{answer.User.username} #{answer.updatedAt}
                         if userId === answer.userId
                             .cruds
-                                button: a(href=`/answers/${answer.id}/edit`) Edit
+                                a(href=`/answers/${answer.id}/edit`)
+                                    button  Edit
                                 form(action=`/answers/${answer.id}?_method=DELETE` method="POST")
                                     button(type="submit" id="deleteBtn" class="dltBtn") Delete
         form(action=`/questions/${question.id}` method="post")

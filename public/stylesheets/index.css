@@ -15,6 +15,11 @@ body {
 	width: auto;
 }
 
+.logo-nav {
+	height: 8vh;
+	width: 8vh;
+}
+
 
 .author-info {
 	display: flex;
@@ -64,7 +69,8 @@ body {
 
 /* ===================================Header Grid===================================================== */
 .top-bar {
-	display: grid;
+	/* display: grid; */
+	display: flex;
 	grid-template-columns: repeat(7, auto);
 	direction: column;
 	justify-content: space-evenly;
@@ -77,6 +83,7 @@ body {
 	padding-left: 10px;
 	padding-right: 30px;
 }
+
 .tbgrid-2 {
 	grid-area: about;
 	display: inline-block;
@@ -103,6 +110,11 @@ body {
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+.tbgrid-5 input {
+	width: 500px;
+}
+
 .tbgrid-6 {
 	grid-area: login;
 	padding-left: 10px;
@@ -279,10 +291,18 @@ input {
 }
 
 .inputBlock {
-	max-width: 33%;
+	/* max-width: 33%; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 4rem;
 }
 .inputBlock * {
 	margin: 5px;
+	height: 3rem;
+	border-radius: 10px;
+	outline: none;
 }
 
 .buttonHolder {
@@ -290,12 +310,18 @@ input {
 	justify-content: center;
 }
 
+.buttonHolder > button {
+	min-width: 12vw;
+	margin: 5px;
+}
+
+
 .error {
 	background-color: rgba(255, 0, 0, 0.25);
 	margin-top: 5px;
 }
 
 .login-button {
-	min-width: 10vw;
+	min-width: 12vw;
 	margin: 5px;
 }
