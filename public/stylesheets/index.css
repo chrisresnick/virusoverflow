@@ -111,6 +111,10 @@ body {
 	padding-right: 10px;
 }
 
+#search-button{
+	margin-left: 10px;
+}
+
 .tbgrid-5 input {
 	width: 500px;
 }
