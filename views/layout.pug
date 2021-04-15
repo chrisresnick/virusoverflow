@@ -50,11 +50,12 @@ html
           //- li.tbgrid-2 About
             a(href="")
           //- li.tbgrid-3 Products
-          li.tbgrid-4 Search
         div.tbgrid-5
           form(action="/search", method="post", id="search")
               div
-                input(type="text", name="searchTerm" style="border-radius: 10px")
+                //- li.tbgrid-4 Search
+                input(type="text", name="searchTerm" style="border-radius: 10px" placeholder="Search")
+                button(type='submit' id="search-button") Search
         if logedIn
           div.tbgrid-6
             form(action="/logout", method="post")
